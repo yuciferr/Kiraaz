@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "270786683486",
+    "project_id": "term-project-kiraaz",
+    "storage_bucket": "term-project-kiraaz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:270786683486:android:0c21e87b701c578bfa8acf",
+        "android_client_info": {
+          "package_name": "com.example.kiraaz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "270786683486-ffedejctolm2vps0cj4r1n2vlh377tnk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kiraaz",
+            "certificate_hash": "dd8e19a12f89f33afda2c6a071e19ffa149f37a0"
+          }
+        },
+        {
+          "client_id": "270786683486-5vlk4b4fuu1o9ntm632pke55cc64aqga.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA44m1IAsPv5RO213apq6flFI2ZqPDHU9g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "270786683486-5vlk4b4fuu1o9ntm632pke55cc64aqga.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
