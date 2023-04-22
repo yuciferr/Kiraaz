@@ -8,4 +8,10 @@
     <string name="sign_up">Sign Up</string>
     <string name="google">Google</string>
     <string name="or">Or</string>
+    <string name="profile_picture">Profile Picture</string>
+    <string name="profile_information">Profile Information</string>
+    <string name="name_surname">Name-Surname</string>
+    <string name="birthdate">Birthdate</string>
+    <string name="city">City</string>
+    <string name="next">Next</string>
 </resources>
