@@ -9,5 +9,14 @@
         android:id="@+id/loginFragment"
         android:name="com.example.kiraaz.ui.login.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_profilingFragment"
+            app:destination="@id/profilingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profilingFragment"
+        android:name="com.example.kiraaz.ui.profiling.ProfilingFragment"
+        android:label="fragment_profiling"
+        tools:layout="@layout/fragment_profiling" />
 </navigation>
