@@ -7,11 +7,11 @@
     <color name="seed">#101010</color>
     <color name="md_theme_light_primary">#101010</color>
     <color name="md_theme_light_onPrimary">#FFFFFF</color>
-    <color name="md_theme_light_primaryContainer">#EFEFEF</color>
+    <color name="md_theme_light_primaryContainer">#FFFFFF</color>
     <color name="md_theme_light_onPrimaryContainer">#181818</color>
     <color name="md_theme_light_secondary">#DD5252</color>
     <color name="md_theme_light_onSecondary">#FFFFFF</color>
-    <color name="md_theme_light_secondaryContainer">#BEBEBE</color>
+    <color name="md_theme_light_secondaryContainer">#EFEFEF</color>
     <color name="md_theme_light_onSecondaryContainer">#181818</color>
     <color name="md_theme_light_tertiary">#DD5252</color>
     <color name="md_theme_light_onTertiary">#FFFFFF</color>
@@ -23,7 +23,7 @@
     <color name="md_theme_light_onErrorContainer">#410002</color>
     <color name="md_theme_light_background">#FFFFFF</color>
     <color name="md_theme_light_onBackground">#101010</color>
-    <color name="md_theme_light_surface">#EFEFEF</color>
+    <color name="md_theme_light_surface">#FFFFFF</color>
     <color name="md_theme_light_onSurface">#181818</color>
     <color name="md_theme_light_surfaceVariant">#EEA8A8</color>
     <color name="md_theme_light_onSurfaceVariant">#262626</color>
@@ -37,13 +37,13 @@
     <color name="md_theme_light_scrim">#000000</color>
 
 
-    <color name="md_theme_dark_primary">#DBDBDB</color>
+    <color name="md_theme_dark_primary">#101010</color>
     <color name="md_theme_dark_onPrimary">#262626</color>
-    <color name="md_theme_dark_primaryContainer">#E47070</color>
+    <color name="md_theme_dark_primaryContainer">#181818</color>
     <color name="md_theme_dark_onPrimaryContainer">#EFEFEF</color>
     <color name="md_theme_dark_secondary">#EEA8A8</color>
     <color name="md_theme_dark_onSecondary">#181818</color>
-    <color name="md_theme_dark_secondaryContainer">#DD5252</color>
+    <color name="md_theme_dark_secondaryContainer">#101010</color>
     <color name="md_theme_dark_onSecondaryContainer">#FFFFFF</color>
     <color name="md_theme_dark_tertiary">#DD5252</color>
     <color name="md_theme_dark_onTertiary">#181818</color>

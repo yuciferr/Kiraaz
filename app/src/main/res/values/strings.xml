@@ -14,4 +14,10 @@
     <string name="birthdate">Birthdate</string>
     <string name="city">City</string>
     <string name="next">Next</string>
+    <string name="language">Language</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="posts">Posts</string>
+    <string name="gender">Gender</string>
+    <string name="profile">Profile</string>
 </resources>
