@@ -1,5 +1,6 @@
 package com.example.kiraaz.ui.login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -24,6 +25,14 @@ class LoginFragment : Fragment() {
 
     private lateinit var googleSignInClient: GoogleSignInClient
 
+
+    //Hide bottom navigation bar
+    @Deprecated("Deprecated in Java")
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        val bottomNavigationBar = activity?.findViewById<View>(R.id.bottomNavigationView)
+        bottomNavigationBar?.visibility = View.GONE
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
@@ -35,10 +44,10 @@ class LoginFragment : Fragment() {
     ): View {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
 
-        /*if (viewModel.mAuth.currentUser != null) {
+        if (viewModel.mAuth.currentUser != null) {
             // User is signed in (getCurrentUser() will be null if not signed in)
-            findNavController().navigate(R.id.action_global_searchFragment)
-        }*/
+            findNavController().navigate(R.id.action_global_profileFragment)
+        }
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -70,7 +79,7 @@ class LoginFragment : Fragment() {
             viewModel.isLoginSuccessful.observe(viewLifecycleOwner) {
                 if (it) {
                     Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_SHORT).show()
-                    //findNavController().navigate(R.id.action_global_searchFragment)
+                    findNavController().navigate(R.id.action_global_profileFragment)
                 } else {
                     Toast.makeText(requireContext(), viewModel.errorLogin.value, Toast.LENGTH_SHORT)
                         .show()
@@ -124,14 +133,14 @@ class LoginFragment : Fragment() {
                 viewModel.signInWithGoogle(account)
                 viewModel.isGoogleSignInSuccessful.observe(viewLifecycleOwner) { isSuccessful ->
                     if (isSuccessful) {
-                        /*viewModel.isNewUser.observe(viewLifecycleOwner) {
+                      viewModel.isNewUser.observe(viewLifecycleOwner) {
                             if (it) {
-                                val action = LoginFragmentDirections.actionLoginFragmentToProfileInfoFragment(true)
+                                val action = LoginFragmentDirections.actionLoginFragmentToProfilingFragment(true)
                                 findNavController().navigate(action)
                             } else {
-                                findNavController().navigate(R.id.action_global_searchFragment)
+                                findNavController().navigate(R.id.action_global_profileFragment)
                             }
-                        }*/
+                        }
                     } else {
                         Toast.makeText(requireContext(), "Login Failed", Toast.LENGTH_SHORT).show()
                     }

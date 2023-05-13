@@ -35,6 +35,14 @@ class ProfilingFragment : Fragment() {
     //private lateinit var args : ProfileInfoFragmentArgs
     private var isNewAccount = false
 
+
+    //Hide bottom navigation bar
+    @Deprecated("Deprecated in Java")
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        val bottomNavigationBar = activity?.findViewById<View>(R.id.bottomNavigationView)
+        bottomNavigationBar?.visibility = View.GONE
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this)[ProfilingViewModel::class.java]
