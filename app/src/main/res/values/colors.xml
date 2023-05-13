@@ -37,7 +37,7 @@
     <color name="md_theme_light_scrim">#000000</color>
 
 
-    <color name="md_theme_dark_primary">#101010</color>
+    <color name="md_theme_dark_primary">#DBDBDB</color>
     <color name="md_theme_dark_onPrimary">#262626</color>
     <color name="md_theme_dark_primaryContainer">#181818</color>
     <color name="md_theme_dark_onPrimaryContainer">#EFEFEF</color>
