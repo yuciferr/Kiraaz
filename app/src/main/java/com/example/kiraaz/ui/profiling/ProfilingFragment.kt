@@ -75,11 +75,11 @@ class ProfilingFragment : Fragment() {
             binding.nextBtn.text = "Update"
             binding.backBtn.visibility = View.VISIBLE
             binding.backBtn.setOnClickListener {
-                findNavController().navigate(R.id.action_global_profileFragment)
+                findNavController().navigateUp()
             }
             binding.cancelBtn.visibility = View.VISIBLE
             binding.cancelBtn.setOnClickListener {
-                findNavController().navigate(R.id.action_global_profileFragment)
+                findNavController().navigateUp()
             }
         }
 

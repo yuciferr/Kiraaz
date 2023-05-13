@@ -91,6 +91,10 @@ class ProfileFragment : Fragment() {
             }
         }
 
+        binding.postBtn.setOnClickListener{
+            findNavController().navigate(R.id.action_profileFragment_to_myPostsFragment)
+        }
+
         binding.signoutBtn.setOnClickListener{
             viewModel.mAuth.signOut()
             findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
