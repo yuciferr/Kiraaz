@@ -1,5 +1,6 @@
 package com.example.kiraaz.ui.profiling
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.DatePickerDialog
@@ -9,6 +10,7 @@ import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,11 +21,14 @@ import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.kiraaz.R
 import com.example.kiraaz.databinding.FragmentProfilingBinding
 import com.example.kiraaz.utils.Constants
+import com.google.android.material.chip.Chip
 import java.util.*
 
+@Suppress("DEPRECATION")
 class ProfilingFragment : Fragment() {
 
     private lateinit var binding: FragmentProfilingBinding
@@ -32,7 +37,7 @@ class ProfilingFragment : Fragment() {
     private var selectedImage: Uri? = null
     private var isImageChanged = false
 
-    //private lateinit var args : ProfileInfoFragmentArgs
+    private lateinit var args: ProfilingFragmentArgs
     private var isNewAccount = false
 
 
@@ -43,9 +48,13 @@ class ProfilingFragment : Fragment() {
         val bottomNavigationBar = activity?.findViewById<View>(R.id.bottomNavigationView)
         bottomNavigationBar?.visibility = View.GONE
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this)[ProfilingViewModel::class.java]
+
+        args = ProfilingFragmentArgs.fromBundle(requireArguments())
+        isNewAccount = args.isNewAccount
     }
 
     override fun onCreateView(
@@ -54,11 +63,24 @@ class ProfilingFragment : Fragment() {
     ): View {
         binding = FragmentProfilingBinding.inflate(inflater, container, false)
 
-        //pick image from gallery
-        binding.profileIv.setOnClickListener {
-            Toast.makeText(requireContext(), "Image clicked", Toast.LENGTH_SHORT).show()
-            pickPhotoFromGallery()
-            isImageChanged = true
+        if (isNewAccount) {
+            binding.nextBtn.text = "Save"
+            binding.cancelBtn.visibility = View.GONE
+            binding.nextBtn.setOnClickListener {
+                uploadProfile()
+                //findNavController().navigate(R.id.action_global_searchFragment)
+            }
+
+        } else {
+            binding.nextBtn.text = "Update"
+            binding.backBtn.visibility = View.VISIBLE
+            binding.backBtn.setOnClickListener {
+                findNavController().navigate(R.id.action_global_profileFragment)
+            }
+            binding.cancelBtn.visibility = View.VISIBLE
+            binding.cancelBtn.setOnClickListener {
+                findNavController().navigate(R.id.action_global_profileFragment)
+            }
         }
 
         //city dropdown
@@ -92,6 +114,47 @@ class ProfilingFragment : Fragment() {
             binding.birthdateEt.visibility = View.VISIBLE
         }
 
+        binding.nextBtn.setOnClickListener {
+            uploadProfile()
+            Handler().postDelayed({
+                findNavController().navigate(R.id.action_global_profileFragment)
+            }, 3000)
+        }
+
+        viewModel.download()
+        viewModel.isDownloaded.observe(viewLifecycleOwner) { bool ->
+            if (bool){
+                binding.nameTv.setText(viewModel.profile.value?.name)
+                binding.birthdateTv.text = viewModel.profile.value?.birthDate
+                binding.cityDropdown.setText(viewModel.profile.value?.city)
+
+                if (viewModel.profile.value?.gender == "Male") {
+                    binding.genderMale.isChecked = true
+                } else {
+                    binding.genderFemale.isChecked = true
+                }
+
+                if (viewModel.profile.value?.image != "") {
+                    binding.profileIv.setImageURI(Uri.parse(viewModel.profile.value?.image))
+                }
+
+                viewModel.profile.value?.problems?.forEach { i ->
+                    when (i) {
+                        "Different Gender" -> binding.differentGender.isChecked = true
+                        "Pets" -> binding.pets.isChecked = true
+                        "Guests" -> binding.guests.isChecked = true
+                        "Smoking" -> binding.smoking.isChecked = true
+                        "Alcohol" -> binding.alcohol.isChecked = true
+                        "Language" -> binding.language.isChecked = true
+                    }
+                }
+            }else{
+                Toast.makeText(context, viewModel.errorDownload.value, Toast.LENGTH_SHORT).show()
+            }
+
+
+        }
+
 
         return binding.root
     }
@@ -100,13 +163,14 @@ class ProfilingFragment : Fragment() {
     private fun pickPhotoFromGallery() {
         if (ContextCompat.checkSelfPermission(
                 requireContext(),
-                android.Manifest.permission.READ_EXTERNAL_STORAGE
+                Manifest.permission.READ_EXTERNAL_STORAGE
             )
             != PackageManager.PERMISSION_GRANTED
         ) {
-            requestPermissions(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1)
+            requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
         } else {
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            val intent =
+                Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             intent.type = "image/*"
             startActivityForResult(intent, 2)
 
@@ -133,7 +197,10 @@ class ProfilingFragment : Fragment() {
             selectedImage = data.data
             if (selectedImage != null && Build.VERSION.SDK_INT >= 28) {
                 val source =
-                    ImageDecoder.createSource(requireActivity().contentResolver, selectedImage!!)
+                    ImageDecoder.createSource(
+                        requireActivity().contentResolver,
+                        selectedImage!!
+                    )
                 val bitmap = ImageDecoder.decodeBitmap(source)
                 binding.profileIv.setImageBitmap(bitmap)
             } else {
@@ -146,5 +213,48 @@ class ProfilingFragment : Fragment() {
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun uploadProfile() {
+        val name = binding.nameTv.text.toString()
+        val gender: String =
+            if (binding.genders.checkedRadioButtonId == binding.genderMale.id) {
+                binding.genderMale.text.toString()
+            } else {
+                binding.genderFemale.text.toString()
+            }
+        val birthDate = binding.birthdateTv.text.toString()
+        val city = binding.cityDropdown.text.toString()
+
+        val problems = ArrayList<String>()
+        binding.problems.checkedChipIds.forEach {
+            problems.add(binding.problems.findViewById<Chip>(it).text.toString())
+        }
+
+        viewModel.upload(name, gender, birthDate, city, problems)
+        viewModel.isUploaded.observe(viewLifecycleOwner) {
+            if (it) {
+                Toast.makeText(context, "Profile uploaded", Toast.LENGTH_SHORT).show()
+                if (isImageChanged) {
+                    viewModel.uploadImage(selectedImage!!)
+                    viewModel.isImageUploaded.observe(viewLifecycleOwner) { img ->
+                        if (img) {
+                            Toast.makeText(context, "Image uploaded", Toast.LENGTH_SHORT)
+                                .show()
+                        } else {
+                            Toast.makeText(
+                                context,
+                                "Image upload failed",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
+                    }
+                }
+            } else {
+                Toast.makeText(context, viewModel.errorDownload.value, Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
     }
 }
