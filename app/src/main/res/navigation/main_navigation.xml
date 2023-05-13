@@ -5,6 +5,10 @@
     android:id="@+id/main_navigation"
     app:startDestination="@id/loginFragment">
 
+    <action
+        android:id="@+id/action_global_profileFragment"
+        app:destination="@id/profileFragment" />
+
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.kiraaz.ui.login.LoginFragment"
@@ -18,5 +22,19 @@
         android:id="@+id/profilingFragment"
         android:name="com.example.kiraaz.ui.profiling.ProfilingFragment"
         android:label="fragment_profiling"
-        tools:layout="@layout/fragment_profiling" />
+        tools:layout="@layout/fragment_profiling" >
+        <argument
+            android:name="isNewAccount"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.kiraaz.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_profilingFragment"
+            app:destination="@id/profilingFragment" />
+    </fragment>
 </navigation>
