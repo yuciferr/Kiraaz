@@ -36,5 +36,8 @@
         <action
             android:id="@+id/action_profileFragment_to_profilingFragment"
             app:destination="@id/profilingFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 </navigation>

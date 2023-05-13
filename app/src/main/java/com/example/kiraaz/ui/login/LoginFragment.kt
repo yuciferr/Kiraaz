@@ -105,7 +105,8 @@ class LoginFragment : Fragment() {
             viewModel.isRegisterSuccessful.observe(viewLifecycleOwner) {
                 if (it) {
                     Toast.makeText(requireContext(), "Register Successful", Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(R.id.action_loginFragment_to_profilingFragment)
+                    val action = LoginFragmentDirections.actionLoginFragmentToProfilingFragment(true)
+                    findNavController().navigate(action)
                 } else {
                     Toast.makeText(requireContext(), viewModel.errorRegister.value, Toast.LENGTH_SHORT)
                         .show()
