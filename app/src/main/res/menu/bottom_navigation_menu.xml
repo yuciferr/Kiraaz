@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/round_search_24"
+        android:title="Search"/>
+    <item
+        android:id="@+id/favorites"
+        android:icon="@drawable/round_favorite_24"
+        android:title="Favorites"/>
+
+    <item
+        android:id="@+id/matches"
+        android:icon="@drawable/round_handshake_24"
+        android:title="Matches"/>
+
+    <item
+        android:id="@+id/messages"
+        android:icon="@drawable/round_message_24"
+        android:title="Messages"/>
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/round_person_24"
+        android:title="Profile"/>
+
+</menu>
