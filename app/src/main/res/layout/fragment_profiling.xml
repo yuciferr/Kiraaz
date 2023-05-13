@@ -37,7 +37,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3"
             app:shapeAppearance="@style/circleImageView"
-            app:strokeWidth="5dp" />
+            app:strokeColor="#EFEFEF"
+            app:strokeWidth="3dp" />
 
         <TextView
             android:id="@+id/profilePicText"
@@ -61,7 +62,7 @@
             android:text="Gender"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/radioGroup"
+            app:layout_constraintStart_toStartOf="@+id/genders"
             app:layout_constraintTop_toBottomOf="@+id/nameEt" />
 
         <TextView
@@ -86,7 +87,7 @@
             android:text="Which ones are not a problem for you?"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/chipGroup"
+            app:layout_constraintStart_toStartOf="@+id/problems"
             app:layout_constraintTop_toBottomOf="@+id/city" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -115,7 +116,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <RadioGroup
-            android:id="@+id/radioGroup"
+            android:id="@+id/genders"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -162,7 +163,7 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+            app:layout_constraintTop_toBottomOf="@+id/genders" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/city"
@@ -195,7 +196,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroup"
+            android:id="@+id/problems"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -269,7 +270,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/cancelBtn"
-            app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
+            app:layout_constraintTop_toBottomOf="@+id/problems" />
 
         <Button
             android:id="@+id/cancelBtn"
@@ -290,15 +291,20 @@
             app:layout_constraintEnd_toStartOf="@+id/nextBtn"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
+            app:layout_constraintTop_toBottomOf="@+id/problems" />
 
-        <ImageView
+        <Button
             android:id="@+id/backBtn"
-            android:layout_width="32dp"
+            android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="8dp"
-            android:src="@drawable/baseline_arrow_back_24"
+            android:background="#00000000"
+            android:pointerIcon="none"
             android:visibility="gone"
+            app:icon="@drawable/baseline_arrow_back_24"
+            app:iconGravity="top"
+            app:iconSize="32dp"
+            app:iconTint="?android:attr/textColorPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/textView3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView3" />
