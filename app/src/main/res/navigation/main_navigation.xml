@@ -49,12 +49,30 @@
         android:label="fragment_my_posts"
         tools:layout="@layout/fragment_my_posts" >
         <action
-            android:id="@+id/action_myPostsFragment_to_newPostFragment"
-            app:destination="@id/newPostFragment" />
+            android:id="@+id/action_myPostsFragment_to_postImageFragment"
+            app:destination="@id/postImageFragment" />
     </fragment>
     <fragment
-        android:id="@+id/newPostFragment"
-        android:name="com.example.kiraaz.ui.posts.newpost.NewPostFragment"
-        android:label="fragment_new_post"
-        tools:layout="@layout/fragment_new_post" />
+        android:id="@+id/postImageFragment"
+        android:name="com.example.kiraaz.ui.posts.newpost.PostImageFragment"
+        android:label="fragment_post_image"
+        tools:layout="@layout/fragment_post_image" >
+        <action
+            android:id="@+id/action_postImageFragment_to_postAddressFragment"
+            app:destination="@id/postAddressFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/postDetailFragment"
+        android:name="com.example.kiraaz.ui.posts.newpost.PostDetailFragment"
+        android:label="fragment_post_detail"
+        tools:layout="@layout/fragment_post_detail" />
+    <fragment
+        android:id="@+id/postAddressFragment"
+        android:name="com.example.kiraaz.ui.posts.newpost.PostAddressFragment"
+        android:label="fragment_post_address"
+        tools:layout="@layout/fragment_post_address" >
+        <action
+            android:id="@+id/action_postAddressFragment_to_postDetailFragment"
+            app:destination="@id/postDetailFragment" />
+    </fragment>
 </navigation>
