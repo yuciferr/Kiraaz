@@ -42,7 +42,7 @@ class MyPostsFragment : Fragment() {
         }
 
         binding.newPostBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_myPostsFragment_to_newPostFragment)
+            findNavController().navigate(R.id.action_myPostsFragment_to_postImageFragment)
         }
 
         return binding.root
