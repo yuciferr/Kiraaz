@@ -5,10 +5,6 @@
     android:id="@+id/main_navigation"
     app:startDestination="@id/loginFragment">
 
-    <action
-        android:id="@+id/action_global_profileFragment"
-        app:destination="@id/profileFragment" />
-
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.kiraaz.ui.login.LoginFragment"
@@ -16,7 +12,14 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_profilingFragment"
-            app:destination="@id/profilingFragment" />
+            app:destination="@id/profilingFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/profilingFragment"
@@ -27,6 +30,11 @@
             android:name="isNewAccount"
             app:argType="boolean"
             android:defaultValue="false" />
+        <action
+            android:id="@+id/action_profilingFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/profilingFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -38,7 +46,10 @@
             app:destination="@id/profilingFragment" />
         <action
             android:id="@+id/action_profileFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/profileFragment"
+            app:popUpToInclusive="true"
+            />
         <action
             android:id="@+id/action_profileFragment_to_myPostsFragment"
             app:destination="@id/myPostsFragment" />
