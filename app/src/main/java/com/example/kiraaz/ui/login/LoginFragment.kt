@@ -46,7 +46,7 @@ class LoginFragment : Fragment() {
 
         if (viewModel.mAuth.currentUser != null) {
             // User is signed in (getCurrentUser() will be null if not signed in)
-            findNavController().navigate(R.id.action_global_profileFragment)
+            findNavController().navigate(R.id.action_loginFragment_to_profileFragment)
         }
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -79,7 +79,7 @@ class LoginFragment : Fragment() {
             viewModel.isLoginSuccessful.observe(viewLifecycleOwner) {
                 if (it) {
                     Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(R.id.action_global_profileFragment)
+                    findNavController().navigate(R.id.action_loginFragment_to_profileFragment)
                 } else {
                     Toast.makeText(requireContext(), viewModel.errorLogin.value, Toast.LENGTH_SHORT)
                         .show()
@@ -139,7 +139,7 @@ class LoginFragment : Fragment() {
                                 val action = LoginFragmentDirections.actionLoginFragmentToProfilingFragment(true)
                                 findNavController().navigate(action)
                             } else {
-                                findNavController().navigate(R.id.action_global_profileFragment)
+                                findNavController().navigate(R.id.action_loginFragment_to_profileFragment)
                             }
                         }
                     } else {
