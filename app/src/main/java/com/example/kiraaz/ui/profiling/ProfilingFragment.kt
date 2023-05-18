@@ -10,7 +10,6 @@ import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,6 +18,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -63,16 +63,68 @@ class ProfilingFragment : Fragment() {
     ): View {
         binding = FragmentProfilingBinding.inflate(inflater, container, false)
 
+        //pick image from gallery
+        binding.profileIv.setOnClickListener {
+            pickPhotoFromGallery()
+            isImageChanged = true
+        }
+
+
         if (isNewAccount) {
             binding.nextBtn.text = "Save"
             binding.cancelBtn.visibility = View.GONE
             binding.nextBtn.setOnClickListener {
                 uploadProfile()
-                //findNavController().navigate(R.id.action_global_searchFragment)
+                //findNavController().navigate(R.id.action_profilingFragment_to_profileFragment)
             }
+            val callback = object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+
+                }
+            }
+            requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
 
         } else {
+
+            viewModel.download()
+            viewModel.isDownloaded.observe(viewLifecycleOwner) { bool ->
+                if (bool){
+                    binding.nameTv.setText(viewModel.profile.value?.name)
+                    binding.birthdateTv.text = viewModel.profile.value?.birthDate
+                    binding.cityDropdown.setText(viewModel.profile.value?.city)
+
+                    if (viewModel.profile.value?.gender == "Male") {
+                        binding.genderMale.isChecked = true
+                    } else {
+                        binding.genderFemale.isChecked = true
+                    }
+
+                    if (viewModel.profile.value?.image != "") {
+                        binding.profileIv.setImageURI(Uri.parse(viewModel.profile.value?.image))
+                    }
+
+                    viewModel.profile.value?.problems?.forEach { i ->
+                        when (i) {
+                            "Different Gender" -> binding.differentGender.isChecked = true
+                            "Pets" -> binding.pets.isChecked = true
+                            "Guests" -> binding.guests.isChecked = true
+                            "Smoking" -> binding.smoking.isChecked = true
+                            "Alcohol" -> binding.alcohol.isChecked = true
+                            "Language" -> binding.language.isChecked = true
+                        }
+                    }
+                }else{
+                    Toast.makeText(context, viewModel.errorDownload.value, Toast.LENGTH_SHORT).show()
+                }
+
+
+            }
+
             binding.nextBtn.text = "Update"
+            binding.nextBtn.setOnClickListener {
+                uploadProfile()
+                //findNavController().navigate(R.id.action_profilingFragment_to_profileFragment)
+            }
             binding.backBtn.visibility = View.VISIBLE
             binding.backBtn.setOnClickListener {
                 findNavController().navigateUp()
@@ -105,56 +157,9 @@ class ProfilingFragment : Fragment() {
 
             datePicker.datePicker.maxDate = System.currentTimeMillis()
 
-            if (binding.birthdateTv.text != "Birthdate") {
-                val date = binding.birthdateTv.text.toString().split("/")
-                datePicker.updateDate(date[2].toInt(), date[1].toInt() - 1, date[0].toInt())
-            }
-
             datePicker.show()
             binding.birthdateEt.visibility = View.VISIBLE
         }
-
-        binding.nextBtn.setOnClickListener {
-            uploadProfile()
-            Handler().postDelayed({
-                findNavController().navigate(R.id.action_global_profileFragment)
-            }, 3000)
-        }
-
-        viewModel.download()
-        viewModel.isDownloaded.observe(viewLifecycleOwner) { bool ->
-            if (bool){
-                binding.nameTv.setText(viewModel.profile.value?.name)
-                binding.birthdateTv.text = viewModel.profile.value?.birthDate
-                binding.cityDropdown.setText(viewModel.profile.value?.city)
-
-                if (viewModel.profile.value?.gender == "Male") {
-                    binding.genderMale.isChecked = true
-                } else {
-                    binding.genderFemale.isChecked = true
-                }
-
-                if (viewModel.profile.value?.image != "") {
-                    binding.profileIv.setImageURI(Uri.parse(viewModel.profile.value?.image))
-                }
-
-                viewModel.profile.value?.problems?.forEach { i ->
-                    when (i) {
-                        "Different Gender" -> binding.differentGender.isChecked = true
-                        "Pets" -> binding.pets.isChecked = true
-                        "Guests" -> binding.guests.isChecked = true
-                        "Smoking" -> binding.smoking.isChecked = true
-                        "Alcohol" -> binding.alcohol.isChecked = true
-                        "Language" -> binding.language.isChecked = true
-                    }
-                }
-            }else{
-                Toast.makeText(context, viewModel.errorDownload.value, Toast.LENGTH_SHORT).show()
-            }
-
-
-        }
-
 
         return binding.root
     }
@@ -241,6 +246,7 @@ class ProfilingFragment : Fragment() {
                         if (img) {
                             Toast.makeText(context, "Image uploaded", Toast.LENGTH_SHORT)
                                 .show()
+                            findNavController().navigate(R.id.action_profilingFragment_to_profileFragment)
                         } else {
                             Toast.makeText(
                                 context,
@@ -250,6 +256,8 @@ class ProfilingFragment : Fragment() {
                                 .show()
                         }
                     }
+                } else {
+                    findNavController().navigate(R.id.action_profilingFragment_to_profileFragment)
                 }
             } else {
                 Toast.makeText(context, viewModel.errorDownload.value, Toast.LENGTH_SHORT)
