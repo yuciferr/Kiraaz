@@ -20,4 +20,5 @@
     <string name="posts">Posts</string>
     <string name="gender">Gender</string>
     <string name="profile">Profile</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyA44m1IAsPv5RO213apq6flFI2ZqPDHU9g</string>
 </resources>
