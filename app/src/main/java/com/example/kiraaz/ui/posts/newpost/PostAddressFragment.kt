@@ -89,9 +89,18 @@ class PostAddressFragment : Fragment(), OnMapReadyCallback {
         val geocoder = Geocoder(requireContext(), Locale.getDefault())
 
         var address = ""
+        var city = ""
+        var district = ""
         try {
             val addressList = geocoder.getFromLocation(currentLatLng.latitude, currentLatLng.longitude, 1)
             if (addressList?.size!! > 0) {
+
+                if (addressList[0].subAdminArea != null) {
+                    district = addressList[0].subAdminArea
+                }
+                if (addressList[0].adminArea != null) {
+                    city = addressList[0].adminArea
+                }
 
                 if (addressList[0].thoroughfare != null) {
                     address += addressList[0].thoroughfare
@@ -105,6 +114,10 @@ class PostAddressFragment : Fragment(), OnMapReadyCallback {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+
+        binding.addressTv.setText(address)
+        binding.cityTv.setText(city)
+        binding.stateTv.setText(district)
 
         map.addMarker(MarkerOptions().position(currentLatLng).title(address))
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
