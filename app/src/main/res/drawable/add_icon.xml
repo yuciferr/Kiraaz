@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/add_img" android:height="135dp" android:width="120dp" />
+    <item
+        android:drawable="@drawable/add_stroke"
+        android:width="120dp"
+        android:height="160dp"
+        android:gravity="center" />
+    <item
+        android:drawable="@drawable/ic_plus"
+        android:width="24dp"
+        android:height="24dp"
+        android:gravity="center" />
 </layer-list>
