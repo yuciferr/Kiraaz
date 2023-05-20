@@ -8,20 +8,18 @@
     tools:context=".ui.posts.newpost.PostImageFragment">
 
 
-        <Button
-            android:id="@+id/backBtn"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="8dp"
-            android:background="#00000000"
-            android:pointerIcon="none"
-            app:icon="@drawable/baseline_arrow_back_24"
-            app:iconGravity="top"
-            app:iconSize="32dp"
-            app:iconTint="?android:attr/textColorPrimary"
-            app:layout_constraintBottom_toBottomOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
+    <ImageButton
+        android:id="@+id/backBtn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:backgroundTint="?android:attr/colorBackground"
+        android:contentDescription="back"
+        android:scaleType="centerCrop"
+        android:src="@drawable/baseline_arrow_back_24"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView" />
 
         <TextView
             android:id="@+id/textView"
@@ -35,18 +33,20 @@
             app:layout_constraintStart_toEndOf="@+id/backBtn"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:progress="33"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:progress="33"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
         <TextView
@@ -84,7 +84,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
                     android:fontFamily="@font/inter_semibold"
                     android:text="Add Home Photos"
                     android:textSize="24sp"
@@ -107,115 +106,155 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/addIv1"
                     android:layout_width="120dp"
-                    android:layout_height="135dp"
+                    android:layout_height="160dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="24dp"
+                    android:layout_marginEnd="4dp"
+                    android:backgroundTint="?android:attr/colorBackground"
+                    android:padding="0dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/add_icon"
+                    android:contentDescription="Add Image"
                     app:layout_constraintEnd_toStartOf="@+id/addIv2"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView8"
+                     />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/addIv2"
                     android:layout_width="120dp"
-                    android:layout_height="135dp"
+                    android:layout_height="160dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="24dp"
+                    android:layout_marginEnd="4dp"
+                    android:backgroundTint="?android:attr/colorBackground"
+                    android:padding="0dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/add_icon"
+                    android:contentDescription="Add Image"
                     app:layout_constraintEnd_toStartOf="@+id/addIv3"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/addIv1"
                     app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/addIv3"
                     android:layout_width="120dp"
-                    android:layout_height="135dp"
+                    android:layout_height="160dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="16dp"
+                    android:backgroundTint="?android:attr/colorBackground"
+                    android:padding="0dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/add_icon"
+                    android:contentDescription="Add Image"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/addIv2"
                     app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/addIv4"
                     android:layout_width="120dp"
-                    android:layout_height="135dp"
+                    android:layout_height="160dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:backgroundTint="?android:attr/colorBackground"
+                    android:padding="0dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/add_icon"
+                    android:contentDescription="Add Image"
                     app:layout_constraintEnd_toStartOf="@+id/addIv5"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/addIv1" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/addIv5"
                     android:layout_width="120dp"
-                    android:layout_height="135dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_height="160dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:backgroundTint="?android:attr/colorBackground"
+                    android:padding="0dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/add_icon"
+                    android:contentDescription="Add Image"
                     app:layout_constraintEnd_toStartOf="@+id/addIv6"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/addIv4"
                     app:layout_constraintTop_toBottomOf="@+id/addIv2" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/addIv6"
                     android:layout_width="120dp"
-                    android:layout_height="135dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_height="160dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
+                    android:backgroundTint="?android:attr/colorBackground"
+                    android:padding="0dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/add_icon"
+                    android:contentDescription="Add Image"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/addIv5"
                     app:layout_constraintTop_toBottomOf="@+id/addIv3" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/addIv7"
                     android:layout_width="120dp"
-                    android:layout_height="135dp"
+                    android:layout_height="160dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:backgroundTint="?android:attr/colorBackground"
+                    android:padding="0dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/add_icon"
+                    android:contentDescription="Add Image"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/addIv8"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/addIv4" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/addIv8"
                     android:layout_width="120dp"
-                    android:layout_height="135dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_height="160dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:backgroundTint="?android:attr/colorBackground"
+                    android:padding="0dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/add_icon"
+                    android:contentDescription="Add Image"
                     app:layout_constraintEnd_toStartOf="@+id/addIv9"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/addIv7"
                     app:layout_constraintTop_toBottomOf="@+id/addIv5" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/addIv9"
                     android:layout_width="120dp"
-                    android:layout_height="135dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_height="160dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
+                    android:backgroundTint="?android:attr/colorBackground"
+                    android:padding="0dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/add_icon"
+                    android:contentDescription="Add Image"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/addIv8"
