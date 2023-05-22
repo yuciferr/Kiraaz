@@ -43,6 +43,55 @@ class PostDetailFragment : Fragment() {
         binding.backBtn.setOnClickListener {
             findNavController().navigateUp()
         }
+        //Post button
+        binding.postBtn.setOnClickListener {
+
+            if (binding.floorTv.text.isNullOrBlank()){
+                binding.floor.error = "Floor cannot be empty"
+                return@setOnClickListener
+            }
+            if(binding.roomDropdown.text.isNullOrBlank()){
+                binding.room.error = "Room cannot be empty"
+                return@setOnClickListener
+            }
+            if (binding.titleTv.text.isNullOrBlank()){
+                binding.title.error = "Title cannot be empty"
+                return@setOnClickListener
+            }
+            if (binding.descriptionTv.text.isNullOrBlank()){
+                binding.description.error = "Description cannot be empty"
+                return@setOnClickListener
+            }
+            if (binding.rentTv.text.isNullOrBlank()){
+                binding.rent.error = "Rent cannot be empty"
+                return@setOnClickListener
+            }
+            if (binding.roommateTv.text.isNullOrBlank()){
+                binding.roommate.error = "Roommate cannot be empty"
+                return@setOnClickListener
+            }
+            viewModel.uploadHomePost(
+                binding.titleTv.text.toString(),
+                binding.descriptionTv.text.toString(),
+                binding.rentTv.text.toString().toInt(),
+                binding.depositTv.text.toString().toInt(),
+                binding.roommateTv.text.toString().toInt(),
+                binding.floorTv.text.toString().toInt(),
+                binding.roomDropdown.text.toString(),
+                binding.isAmerican.isChecked,
+                binding.isFurnished.isChecked
+            )
+
+            // Unload the images and data from memory
+            viewModel.unLoad()
+
+            // post fragments -> my post fragment
+            findNavController().navigateUp()
+            findNavController().navigateUp()
+            findNavController().navigate(R.id.action_postImageFragment_to_myPostsFragment)
+            findNavController().navigateUp()
+
+        }
 
         return binding.root
     }
