@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.kiraaz.R
 import com.example.kiraaz.databinding.FragmentPostAddressBinding
@@ -23,6 +24,7 @@ import java.util.*
 class PostAddressFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var binding: FragmentPostAddressBinding
+    private lateinit var viewModel: SharedViewModel
 
     private lateinit var mapView: MapView
     private lateinit var map: GoogleMap
@@ -42,6 +44,7 @@ class PostAddressFragment : Fragment(), OnMapReadyCallback {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentPostAddressBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
 
         mapView = binding.mapView
         mapView.onCreate(savedInstanceState)
@@ -49,7 +52,17 @@ class PostAddressFragment : Fragment(), OnMapReadyCallback {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
         binding.nextBtn.setOnClickListener {
+            val address = binding.addressTv.text.toString()
+            val city = binding.cityTv.text.toString()
+            val district = binding.districtTv.text.toString()
+            val latLng = LatLng(lastLocation.latitude, lastLocation.longitude)
+
+            viewModel.setAddress(address, city, district, latLng)
+
             findNavController().navigate(R.id.action_postAddressFragment_to_postDetailFragment)
+        }
+        binding.backBtn.setOnClickListener {
+            findNavController().navigateUp()
         }
         return binding.root
     }
@@ -117,7 +130,7 @@ class PostAddressFragment : Fragment(), OnMapReadyCallback {
 
         binding.addressTv.setText(address)
         binding.cityTv.setText(city)
-        binding.stateTv.setText(district)
+        binding.districtTv.setText(district)
 
         map.addMarker(MarkerOptions().position(currentLatLng).title(address))
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
