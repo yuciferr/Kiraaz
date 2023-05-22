@@ -5,7 +5,6 @@ data class Home(
     var address: Address,
     var floor : Int,
     var rooms : Int,
-    var livingRooms : Int,
     var isAmericanKitchen : Boolean,
     var isFurnished : Boolean
 )
