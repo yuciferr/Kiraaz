@@ -306,7 +306,12 @@ class PostImageFragment : Fragment() {
                 findNavController().navigateUp()
             }
             nextBtn.setOnClickListener {
-                findNavController().navigate(R.id.action_postImageFragment_to_postAddressFragment)
+                if(viewModel.isAddImage.value!![0]){
+                    viewModel.uploadImages()
+                    findNavController().navigate(R.id.action_postImageFragment_to_postAddressFragment)
+                }else{
+                    Toast.makeText(requireContext(),"Please add at least one image",Toast.LENGTH_SHORT).show()
+                }
             }
         }
         return binding.root
