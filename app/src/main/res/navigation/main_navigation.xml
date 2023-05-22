@@ -71,6 +71,11 @@
         <action
             android:id="@+id/action_postImageFragment_to_postAddressFragment"
             app:destination="@id/postAddressFragment" />
+        <action
+            android:id="@+id/action_postImageFragment_to_myPostsFragment"
+            app:destination="@id/myPostsFragment"
+            app:popUpTo="@id/postImageFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/postDetailFragment"
