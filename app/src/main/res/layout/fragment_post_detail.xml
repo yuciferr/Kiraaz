@@ -65,7 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/nextBtn"
+        app:layout_constraintBottom_toTopOf="@+id/postBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBar">
@@ -379,7 +379,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/nextBtn"
+        android:id="@+id/postBtn"
         style="@style/Widget.Material3.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
