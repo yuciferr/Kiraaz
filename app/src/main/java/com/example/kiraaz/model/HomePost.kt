@@ -1,7 +1,7 @@
 package com.example.kiraaz.model
 
 data class HomePost(
-    val owner : Profile,
+    val ownerId : String,
     val home : Home,
     var title : String,
     var description : String?,
@@ -10,7 +10,6 @@ data class HomePost(
     var dues : Int?,
     var roommate : Int,
     val date : String,
-    val time : String,
     val id : String,
     var isAvailable : Boolean
 )
