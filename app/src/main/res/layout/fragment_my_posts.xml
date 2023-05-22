@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/inter_semibold"
             android:text="My Posts"
             android:textSize="20sp"
@@ -73,17 +73,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-        <Button
+        <ImageButton
             android:id="@+id/backBtn"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="8dp"
-            android:background="#00000000"
-            android:pointerIcon="none"
-            app:icon="@drawable/baseline_arrow_back_24"
-            app:iconGravity="top"
-            app:iconSize="32dp"
-            app:iconTint="?android:attr/textColorPrimary"
+            android:backgroundTint="?android:attr/colorBackground"
+            android:contentDescription="back"
+            android:scaleType="centerCrop"
+            android:src="@drawable/baseline_arrow_back_24"
             app:layout_constraintBottom_toBottomOf="@+id/textView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView" />

@@ -7,20 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".ui.posts.newpost.PostAddressFragment">
 
-        <Button
-            android:id="@+id/backBtn"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="8dp"
-            android:background="#00000000"
-            android:pointerIcon="none"
-            app:icon="@drawable/baseline_arrow_back_24"
-            app:iconGravity="top"
-            app:iconSize="32dp"
-            app:iconTint="?android:attr/textColorPrimary"
-            app:layout_constraintBottom_toBottomOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
+    <ImageButton
+        android:id="@+id/backBtn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:backgroundTint="?android:attr/colorBackground"
+        android:contentDescription="back"
+        android:scaleType="centerCrop"
+        android:src="@drawable/baseline_arrow_back_24"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView"
@@ -66,7 +64,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:progress="66"
+        app:layout_constraintBottom_toTopOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -78,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/inter_semibold"
         android:padding="10dp"
         android:text="@string/next"
@@ -94,7 +94,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="20dp"
         android:padding="0dp"
         app:cardCornerRadius="5dp"
         app:layout_constraintBottom_toTopOf="@+id/nextBtn"
@@ -115,7 +115,7 @@
         android:layout_height="160dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:visibility="visible"
         app:cardCornerRadius="8dp"
         app:layout_constraintBottom_toTopOf="@+id/nextBtn"
@@ -135,7 +135,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="Address"
-                app:layout_constraintBottom_toTopOf="@+id/state"
+                app:layout_constraintBottom_toTopOf="@+id/district"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -153,7 +153,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/state"
+                android:id="@+id/district"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -161,7 +161,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="16dp"
-                android:hint="State"
+                android:hint="District"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/city"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -170,7 +170,7 @@
                 app:layout_constraintVertical_bias="0.5">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/stateTv"
+                    android:id="@+id/districtTv"
                     style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -193,7 +193,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/state"
+                app:layout_constraintStart_toEndOf="@+id/district"
                 app:layout_constraintTop_toBottomOf="@+id/address"
                 app:layout_constraintVertical_bias="0.5">
 
