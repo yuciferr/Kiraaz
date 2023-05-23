@@ -1,26 +1,32 @@
 package com.example.kiraaz.ui.posts
 
-//import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kiraaz.R
 import com.example.kiraaz.databinding.FragmentMyPostsBinding
+import com.example.kiraaz.model.HomePost
 
 @Suppress("DEPRECATION")
 class MyPostsFragment : Fragment() {
 
-    //private lateinit var viewModel: MyPostsViewModel
+    private lateinit var viewModel: MyPostsViewModel
     private lateinit var binding: FragmentMyPostsBinding
+
+    private var isEmpty : Boolean = true
+    private var homePosts : List<HomePost?> = ArrayList()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //viewModel = ViewModelProvider(this)[MyPostsViewModel::class.java]
+        viewModel = ViewModelProvider(this)[MyPostsViewModel::class.java]
+        viewModel.getMyPosts()
     }
 
     //Hide bottom navigation bar
@@ -36,6 +42,21 @@ class MyPostsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMyPostsBinding.inflate(inflater, container, false)
+
+        viewModel.homePosts.observe(viewLifecycleOwner) {
+            homePosts = it
+            isEmpty = homePosts.isEmpty()
+            binding.recyclerView.adapter = MyPostsRecyclerAdapter(homePosts)
+            binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        }
+
+        if(isEmpty){
+            binding.group.visibility = View.VISIBLE
+            binding.recyclerView.visibility = View.GONE
+        }else{
+            binding.group.visibility = View.GONE
+            binding.recyclerView.visibility = View.VISIBLE
+        }
 
         binding.backBtn.setOnClickListener {
            findNavController().navigateUp()
