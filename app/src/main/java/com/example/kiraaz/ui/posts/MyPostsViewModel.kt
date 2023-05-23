@@ -1,0 +1,81 @@
+package com.example.kiraaz.ui.posts
+
+import android.util.Log
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.example.kiraaz.model.Address
+import com.example.kiraaz.model.Home
+import com.example.kiraaz.model.HomePost
+import com.google.android.gms.maps.model.LatLng
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+
+@Suppress("UNCHECKED_CAST")
+class MyPostsViewModel : ViewModel()  {
+    private val _mAuth = FirebaseAuth.getInstance()
+    val mAuth: FirebaseAuth
+        get() = _mAuth
+
+    private val _uid = _mAuth.currentUser?.uid
+    val uid: String
+        get() = _uid!!
+
+    private val database = FirebaseFirestore.getInstance()
+
+    private val _homePosts : MutableLiveData<List<HomePost?>> = MutableLiveData()
+    val homePosts : MutableLiveData<List<HomePost?>>
+        get() = _homePosts
+
+    fun getMyPosts(){
+        database.collection("HomePosts")
+            .whereEqualTo("ownerId", uid)
+            .get()
+            .addOnSuccessListener { documents ->
+                val homePosts : ArrayList<HomePost?> = ArrayList()
+                for (document in documents) {
+
+                    val homeData = document.get("home") as HashMap<String, Any>
+                    val addressData = homeData["address"] as HashMap<String, Any>
+                    val latLngData = addressData["latLng"] as HashMap<String, Any>
+                    val latLng = LatLng(
+                        latLngData["latitude"] as Double,
+                        latLngData["longitude"] as Double
+                    )
+                    val address = Address(
+                        latLng,
+                        addressData["street"] as String,
+                        addressData["city"] as String,
+                        addressData["district"] as String
+                    )
+
+                    Log.d("yuci", "getMyPosts: ${homeData["images"]}")
+                    val home = Home(
+                        homeData["images"] as ArrayList<String>,
+                        address,
+                        homeData["floor"].toString().toInt(),
+                        homeData["rooms"] as String,
+                        homeData["isAmericanKitchen"].toString().toBoolean(),
+                        homeData["isFurnished"].toString().toBoolean()
+                    )
+
+                    val homePost = HomePost(
+                        document.getString("ownerId")!!,
+                        document.getString("ownerPicture")!!,
+                        home,
+                        document.getString("title")!!,
+                        document.getString("description"),
+                        document.getLong("price")!!.toInt(),
+                        document.getLong("deposit")!!.toInt(),
+                        document.getLong("dues")!!.toInt(),
+                        document.getLong("roommate")!!.toInt(),
+                        document.getString("date")!!,
+                        document.getString("id")!!,
+                        document.getBoolean("available")!!
+                    )
+
+                    homePosts.add(homePost)
+                }
+                _homePosts.value = homePosts
+            }
+    }
+}
