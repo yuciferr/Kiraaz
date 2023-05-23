@@ -26,6 +26,8 @@ class MyPostsViewModel : ViewModel()  {
     val homePosts : MutableLiveData<List<HomePost?>>
         get() = _homePosts
 
+    val isEmpty : MutableLiveData<Boolean> = MutableLiveData()
+
     fun getMyPosts(){
         database.collection("HomePosts")
             .whereEqualTo("ownerId", uid)
@@ -48,7 +50,6 @@ class MyPostsViewModel : ViewModel()  {
                         addressData["district"] as String
                     )
 
-                    Log.d("yuci", "getMyPosts: ${homeData["images"]}")
                     val home = Home(
                         homeData["images"] as ArrayList<String>,
                         address,
@@ -76,6 +77,9 @@ class MyPostsViewModel : ViewModel()  {
                     homePosts.add(homePost)
                 }
                 _homePosts.value = homePosts
+                isEmpty.value = homePosts.isEmpty()
+            }.addOnFailureListener(){
+                isEmpty.value = true
             }
     }
 }
