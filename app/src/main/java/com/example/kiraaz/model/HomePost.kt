@@ -2,6 +2,7 @@ package com.example.kiraaz.model
 
 data class HomePost(
     val ownerId : String,
+    val ownerPicture : String,
     val home : Home,
     var title : String,
     var description : String?,

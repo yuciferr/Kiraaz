@@ -104,6 +104,7 @@ class SharedViewModel : ViewModel() {
 
         _homePost.value = HomePost(
             _uid!!,
+            _mAuth.currentUser?.photoUrl.toString(),
             _home.value!!,
             title,
             description,
@@ -132,6 +133,7 @@ class SharedViewModel : ViewModel() {
         _home.value =
             Home(arrayListOf(), Address(LatLng(0.0, 0.0), "", "", ""), 0, "", false, false)
         _homePost.value = HomePost(
+            "",
             "",
             Home(arrayListOf(), Address(LatLng(0.0, 0.0), "", "", ""), 0, "", false, false),
             "",
