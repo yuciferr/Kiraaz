@@ -5,11 +5,11 @@ import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.kiraaz.R
@@ -100,6 +100,8 @@ class PostAddressFragment : Fragment(), OnMapReadyCallback {
     private fun addMarker(currentLatLng: LatLng){
         map.clear()
         val geocoder = Geocoder(requireContext(), Locale.getDefault())
+        lastLocation.latitude = currentLatLng.latitude
+        lastLocation.longitude = currentLatLng.longitude
 
         var address = ""
         var city = ""
