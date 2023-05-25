@@ -44,7 +44,7 @@ class MyPostsRecyclerAdapter(private val items : List<HomePost?>) : RecyclerView
         holder.bind(items[position])
 
         holder.itemView.setOnClickListener {
-            val action = MyPostsFragmentDirections.actionMyPostsFragmentToDetailFragment(items[position]!!)
+            val action = MyPostsFragmentDirections.actionMyPostsFragmentToDetailFragment(items[position]!!, true)
             holder.itemView.findNavController().navigate(action)
         }
     }
