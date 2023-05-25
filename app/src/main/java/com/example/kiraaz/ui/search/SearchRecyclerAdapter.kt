@@ -18,7 +18,7 @@ class SearchRecyclerAdapter(private val items : List<HomePost?>) : RecyclerView.
                 priceTv.text = homePost?.price.toString()
                 val location = homePost?.home?.address?.district + ", " + homePost?.home?.address?.city
                 locationTv.text = location
-                profileIv.setImageURI(homePost?.ownerPicture?.toUri())
+                Glide.with(root.context).load(homePost?.ownerPicture?.toUri()).into(profileIv)
                 Glide.with(root.context).load(homePost?.home?.images?.get(0)?.toUri()).into(postIv)
             }
         }
