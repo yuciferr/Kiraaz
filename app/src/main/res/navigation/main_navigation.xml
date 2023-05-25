@@ -62,6 +62,9 @@
         <action
             android:id="@+id/action_myPostsFragment_to_postImageFragment"
             app:destination="@id/postImageFragment" />
+        <action
+            android:id="@+id/action_myPostsFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/postImageFragment"
@@ -90,5 +93,14 @@
         <action
             android:id="@+id/action_postAddressFragment_to_postDetailFragment"
             app:destination="@id/postDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.kiraaz.ui.detail.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="post"
+            app:argType="com.example.kiraaz.model.HomePost" />
     </fragment>
 </navigation>
