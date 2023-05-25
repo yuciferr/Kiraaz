@@ -11,6 +11,7 @@ import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.kiraaz.R
 import com.example.kiraaz.databinding.FragmentDetailBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -54,6 +55,10 @@ class DetailFragment : Fragment(), OnMapReadyCallback {
             depositTv.text = post.deposit.toString()
             furnishedTv.text = post.home.isFurnished.toString()
             kitchenTv.text = post.home.isAmericanKitchen.toString()
+
+            if (navArgs.isMyPost){
+                favBtn.setImageResource(R.drawable.round_create_16)
+            }
 
             backBtn.setOnClickListener {
                 findNavController().navigateUp()
