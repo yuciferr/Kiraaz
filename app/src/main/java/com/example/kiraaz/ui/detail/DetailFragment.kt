@@ -67,6 +67,8 @@ class DetailFragment : Fragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
         setUpMap()
+        //Map interaction is disabled
+        map.uiSettings.setAllGesturesEnabled(false)
     }
 
     private fun setUpMap() {
