@@ -1,11 +1,10 @@
 package com.example.kiraaz.ui.posts
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,8 +18,8 @@ class MyPostsFragment : Fragment() {
     private lateinit var viewModel: MyPostsViewModel
     private lateinit var binding: FragmentMyPostsBinding
 
-    private var isEmpty : Boolean = true
-    private var homePosts : List<HomePost?> = listOf()
+    private var isEmpty: Boolean = true
+    private var homePosts: List<HomePost?> = listOf()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,44 +46,33 @@ class MyPostsFragment : Fragment() {
         homePosts = viewModel.homePosts.value ?: listOf()
         isEmpty = viewModel.isEmpty.value ?: true
 
-        if(homePosts.isEmpty()){
+        if (isEmpty) {
             viewModel.getMyPosts()
-            viewModel.isEmpty.observe(viewLifecycleOwner) {
-                isEmpty = it
-                if(isEmpty){
-                    binding.group.visibility = View.VISIBLE
-                    binding.recyclerView.visibility = View.GONE
-                    binding.progressBar.visibility = View.GONE
-                }else{
-                    viewModel.homePosts.observe(viewLifecycleOwner) { posts ->
-                        homePosts = posts
-                        binding.recyclerView.adapter = MyPostsRecyclerAdapter(homePosts)
-                        binding.recyclerView.layoutManager = LinearLayoutManager(context)
-                    }
-                    binding.group.visibility = View.GONE
-                    binding.recyclerView.visibility = View.VISIBLE
-                    binding.progressBar.visibility = View.GONE
-
-                }
-            }
+            binding.group.visibility = View.VISIBLE
         }else{
-            if(isEmpty){
+            binding.group.visibility = View.GONE
+            binding.recyclerView.visibility = View.VISIBLE
+        }
+        viewModel.homePosts.observe(viewLifecycleOwner) { posts ->
+            homePosts = posts
+            binding.recyclerView.adapter = MyPostsRecyclerAdapter(homePosts)
+            binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        }
+        viewModel.isEmpty.observe(viewLifecycleOwner) { empty ->
+            isEmpty = empty
+            if (isEmpty) {
                 binding.group.visibility = View.VISIBLE
                 binding.recyclerView.visibility = View.GONE
-                binding.progressBar.visibility = View.GONE
             }else{
                 binding.group.visibility = View.GONE
                 binding.recyclerView.visibility = View.VISIBLE
-                binding.recyclerView.adapter = MyPostsRecyclerAdapter(homePosts)
-                binding.recyclerView.layoutManager = LinearLayoutManager(context)
-                binding.progressBar.visibility = View.GONE
-
             }
         }
 
 
+
         binding.backBtn.setOnClickListener {
-           findNavController().navigateUp()
+            findNavController().navigateUp()
         }
 
         binding.newPostBtn.setOnClickListener {
