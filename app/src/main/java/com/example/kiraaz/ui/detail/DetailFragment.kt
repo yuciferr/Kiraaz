@@ -28,6 +28,14 @@ class DetailFragment : Fragment(), OnMapReadyCallback {
     private lateinit var mapView: MapView
     private lateinit var map: GoogleMap
 
+    //Hide bottom navigation bar
+    @Deprecated("Deprecated in Java")
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        val bottomNavigationBar = activity?.findViewById<View>(R.id.bottomNavigationView)
+        bottomNavigationBar?.visibility = View.GONE
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
