@@ -2,6 +2,7 @@ package com.example.kiraaz.ui.posts
 
 import android.view.ViewGroup
 import androidx.core.net.toUri
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.kiraaz.R
@@ -41,5 +42,10 @@ class MyPostsRecyclerAdapter(private val items : List<HomePost?>) : RecyclerView
 
     override fun onBindViewHolder(holder: MyPostsViewHolder, position: Int) {
         holder.bind(items[position])
+
+        holder.itemView.setOnClickListener {
+            val action = MyPostsFragmentDirections.actionMyPostsFragmentToDetailFragment(items[position]!!)
+            holder.itemView.findNavController().navigate(action)
+        }
     }
 }
