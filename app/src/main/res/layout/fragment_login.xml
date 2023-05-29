@@ -172,5 +172,40 @@
             app:layout_constraintStart_toEndOf="@+id/divider"
             app:layout_constraintTop_toBottomOf="@+id/signupBtn" />
 
+        <ProgressBar
+            android:id="@+id/loginPb"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:indeterminateTint="?android:attr/colorBackground"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/loginBtn"
+            app:layout_constraintEnd_toEndOf="@+id/loginBtn"
+            app:layout_constraintStart_toStartOf="@+id/loginBtn"
+            app:layout_constraintTop_toTopOf="@+id/loginBtn" />
+
+        <ProgressBar
+            android:id="@+id/signupPb"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:indeterminateTint="?attr/actionModeSplitBackground"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/signupBtn"
+            app:layout_constraintEnd_toEndOf="@+id/signupBtn"
+            app:layout_constraintStart_toStartOf="@+id/signupBtn"
+            app:layout_constraintTop_toTopOf="@+id/signupBtn" />
+
+        <ProgressBar
+            android:id="@+id/googlePb"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="?attr/actionModeSplitBackground"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/googleBtn"
+            app:layout_constraintEnd_toEndOf="@+id/googleBtn"
+            app:layout_constraintStart_toStartOf="@+id/googleBtn"
+            app:layout_constraintTop_toTopOf="@+id/googleBtn" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

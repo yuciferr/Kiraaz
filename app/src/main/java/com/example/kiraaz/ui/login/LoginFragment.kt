@@ -1,14 +1,13 @@
 package com.example.kiraaz.ui.login
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.kiraaz.R
@@ -80,6 +79,8 @@ class LoginFragment : Fragment() {
                 if (it) {
                     Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_loginFragment_to_profileFragment)
+                    binding.loginBtn.text = ""
+                    binding.loginPb.visibility = View.VISIBLE
                 } else {
                     Toast.makeText(requireContext(), viewModel.errorLogin.value, Toast.LENGTH_SHORT)
                         .show()
@@ -107,6 +108,8 @@ class LoginFragment : Fragment() {
                     Toast.makeText(requireContext(), "Register Successful", Toast.LENGTH_SHORT).show()
                     val action = LoginFragmentDirections.actionLoginFragmentToProfilingFragment(true)
                     findNavController().navigate(action)
+                    binding.signupBtn.text = ""
+                    binding.signupPb.visibility = View.VISIBLE
                 } else {
                     Toast.makeText(requireContext(), viewModel.errorRegister.value, Toast.LENGTH_SHORT)
                         .show()
@@ -119,6 +122,8 @@ class LoginFragment : Fragment() {
     private fun googleLogin() {
         binding.googleBtn.setOnClickListener {
             signIn()
+            binding.googleBtn.text = ""
+            binding.googlePb.visibility = View.VISIBLE
         }
     }
 
