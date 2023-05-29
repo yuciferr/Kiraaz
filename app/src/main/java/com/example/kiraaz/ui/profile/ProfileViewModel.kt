@@ -27,6 +27,7 @@ class ProfileViewModel : ViewModel() {
         get() = _isDownloaded
 
     val errorDownload = MutableLiveData<String>()
+    val isEmpty = MutableLiveData<Boolean>()
 
     fun download() {
         database.collection("Profiles").document(uid!!).addSnapshotListener { data, error ->
@@ -43,7 +44,10 @@ class ProfileViewModel : ViewModel() {
 
                     _profile.value = Profile(name, gender, null,null,null, image, null)
 
+                    isEmpty.value = name.isNullOrEmpty()
+
                     _isDownloaded.value = true
+
                 }
             }
 

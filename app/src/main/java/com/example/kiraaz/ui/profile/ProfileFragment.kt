@@ -78,6 +78,11 @@ class ProfileFragment : Fragment() {
                 }
 
             }
+            viewModel.isEmpty.observe(viewLifecycleOwner){
+                if (it){
+                    findNavController().navigate(R.id.action_profileFragment_to_profilingFragment)
+                }
+            }
 
             binding.profileInfoBtn.setOnClickListener {
                 val action = ProfileFragmentDirections.actionProfileFragmentToProfilingFragment(isNewAccount = false)
