@@ -11,12 +11,12 @@
         android:title="Favorites"/>
 
     <item
-        android:id="@+id/matches"
+        android:id="@+id/matchesFragment"
         android:icon="@drawable/round_handshake_24"
         android:title="Matches"/>
 
     <item
-        android:id="@+id/messages"
+        android:id="@+id/messagesFragment"
         android:icon="@drawable/round_message_24"
         android:title="Messages"/>
 
