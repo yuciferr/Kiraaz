@@ -46,7 +46,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchView"
         app:layout_constraintVertical_bias="1.0"
-        tools:listitem="@layout/home_post_item" />
+        tools:listitem="@layout/item_home_post" />
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
@@ -65,7 +65,7 @@
         app:layout_constraintTop_toBottomOf="@+id/searchPage"
         app:queryBackground="@null"
         app:queryHint="Enter a City"
-        app:suggestionRowLayout="@layout/dropdown_items" />
+        app:suggestionRowLayout="@layout/item_dropdown" />
 
     <ProgressBar
         android:id="@+id/progressBar2"

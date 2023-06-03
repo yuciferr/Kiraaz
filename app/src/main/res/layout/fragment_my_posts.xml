@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/backBtn"
         app:layout_constraintVertical_bias="1.0"
-        tools:listitem="@layout/home_post_item" />
+        tools:listitem="@layout/item_home_post" />
 
     <Button
         android:id="@+id/newPostBtn"

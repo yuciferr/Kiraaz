@@ -138,7 +138,7 @@ class ProfilingFragment : Fragment() {
         //city dropdown
         val cityItems = Constants.cities
         val cityAutoComplete: AutoCompleteTextView = binding.cityDropdown
-        val cityAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_items, cityItems)
+        val cityAdapter = ArrayAdapter(requireContext(), R.layout.item_dropdown, cityItems)
         cityAutoComplete.setAdapter(cityAdapter)
 
         //date picker

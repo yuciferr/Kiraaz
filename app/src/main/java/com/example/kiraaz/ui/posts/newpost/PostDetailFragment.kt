@@ -36,7 +36,7 @@ class PostDetailFragment : Fragment() {
 
         val roomItems = Constants.rooms
         val roomAutoComplete : AutoCompleteTextView = binding.roomDropdown
-        val roomAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_items, roomItems)
+        val roomAdapter = ArrayAdapter(requireContext(), R.layout.item_dropdown, roomItems)
         roomAutoComplete.setAdapter(roomAdapter)
 
         //Back button
