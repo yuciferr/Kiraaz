@@ -5,12 +5,12 @@ import androidx.core.net.toUri
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.kiraaz.databinding.HomePostItemBinding
+import com.example.kiraaz.databinding.ItemHomePostBinding
 import com.example.kiraaz.model.HomePost
 
 class SearchRecyclerAdapter(private val items : List<HomePost?>) : RecyclerView.Adapter<SearchRecyclerAdapter.SearchViewHolder>(){
 
-    class SearchViewHolder(private val binding: HomePostItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class SearchViewHolder(private val binding: ItemHomePostBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(homePost: HomePost?) {
             binding.apply {
@@ -26,7 +26,7 @@ class SearchRecyclerAdapter(private val items : List<HomePost?>) : RecyclerView.
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
-        val binding = HomePostItemBinding.inflate(
+        val binding = ItemHomePostBinding.inflate(
             parent.context.getSystemService(android.view.LayoutInflater::class.java),
             parent,
             false
