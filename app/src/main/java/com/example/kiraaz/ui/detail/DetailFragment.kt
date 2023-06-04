@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.kiraaz.R
@@ -24,6 +25,7 @@ class DetailFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var binding: FragmentDetailBinding
     private val navArgs by navArgs<DetailFragmentArgs>()
+    private lateinit var viewModel: DetailViewModel
 
     private lateinit var mapView: MapView
     private lateinit var map: GoogleMap
@@ -41,6 +43,9 @@ class DetailFragment : Fragment(), OnMapReadyCallback {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDetailBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(this)[DetailViewModel::class.java]
+        viewModel.getFavorites()
+
 
         mapView = binding.mapView
         mapView.onCreate(savedInstanceState)
@@ -64,12 +69,28 @@ class DetailFragment : Fragment(), OnMapReadyCallback {
             furnishedTv.text = post.home.isFurnished.toString()
             kitchenTv.text = post.home.isAmericanKitchen.toString()
 
+            viewModel.favorites.observe(viewLifecycleOwner) {
+                if (it.contains(post.id)) {
+                    favBtn.setImageResource(R.drawable.round_favorite_24)
+                } else {
+                    favBtn.setImageResource(R.drawable.round_favorite_border_24)
+                }
+            }
+
             if (navArgs.isMyPost){
                 favBtn.setImageResource(R.drawable.round_create_16)
             }
 
             backBtn.setOnClickListener {
                 findNavController().navigateUp()
+            }
+
+            favBtn.setOnClickListener {
+                if (navArgs.isMyPost){
+                   //TODO: Edit post
+                }else{
+                    viewModel.toggleFavorite(post.id)
+                }
             }
         }
 
