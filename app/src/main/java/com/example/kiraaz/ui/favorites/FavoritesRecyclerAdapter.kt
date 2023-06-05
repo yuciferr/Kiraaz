@@ -8,7 +8,6 @@ import com.bumptech.glide.Glide
 import com.example.kiraaz.R
 import com.example.kiraaz.databinding.ItemHomePostBinding
 import com.example.kiraaz.model.HomePost
-import com.example.kiraaz.ui.search.SearchFragmentDirections
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -34,7 +33,7 @@ class FavoritesRecyclerAdapter(private val items : List<HomePost?>) : RecyclerVi
 
         fun navigateToDetailFragment(item : HomePost?) {
             binding.postIv.setOnClickListener {
-                val action = SearchFragmentDirections.actionSearchFragmentToDetailFragment(item!!)
+                val action = FavoritesFragmentDirections.actionFavoritesFragmentToDetailFragment(item!!)
                 binding.root.findNavController().navigate(action)
             }
         }
