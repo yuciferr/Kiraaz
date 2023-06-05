@@ -106,6 +106,9 @@
             android:name="isMyPost"
             app:argType="boolean"
             android:defaultValue="false"/>
+        <action
+            android:id="@+id/action_detailFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
@@ -132,7 +135,20 @@
         tools:layout="@layout/fragment_matches" />
     <fragment
         android:id="@+id/messagesFragment"
-        android:name="com.example.kiraaz.ui.matches.MessagesFragment"
+        android:name="com.example.kiraaz.ui.messages.MessagesFragment"
         android:label="fragment_messages"
-        tools:layout="@layout/fragment_messages" />
+        tools:layout="@layout/fragment_messages" >
+        <action
+            android:id="@+id/action_messagesFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.kiraaz.ui.messages.chat.ChatFragment"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" >
+        <argument
+            android:name="ownerID"
+            app:argType="string" />
+    </fragment>
 </navigation>
