@@ -1,4 +1,4 @@
-package com.example.kiraaz.ui.matches
+package com.example.kiraaz.ui.messages
 
 import android.os.Bundle
 import android.view.LayoutInflater
