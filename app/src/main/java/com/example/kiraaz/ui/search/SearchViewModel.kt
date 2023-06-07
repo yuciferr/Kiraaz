@@ -63,6 +63,7 @@ class SearchViewModel : ViewModel() {
                     val homePost = HomePost(
                         document.getString("ownerId")!!,
                         document.getString("ownerPicture")!!,
+                        document.getString("ownerName")!!,
                         home,
                         document.getString("title")!!,
                         document.getString("description"),

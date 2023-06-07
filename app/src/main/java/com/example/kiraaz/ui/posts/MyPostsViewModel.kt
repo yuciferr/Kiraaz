@@ -1,6 +1,5 @@
 package com.example.kiraaz.ui.posts
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kiraaz.model.Address
@@ -62,6 +61,7 @@ class MyPostsViewModel : ViewModel()  {
                     val homePost = HomePost(
                         document.getString("ownerId")!!,
                         document.getString("ownerPicture")!!,
+                        document.getString("ownerName")!!,
                         home,
                         document.getString("title")!!,
                         document.getString("description"),

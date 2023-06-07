@@ -12,7 +12,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.util.*
-import kotlin.collections.ArrayList
 
 class SharedViewModel : ViewModel() {
 
@@ -105,6 +104,7 @@ class SharedViewModel : ViewModel() {
         _homePost.value = HomePost(
             _uid!!,
             _mAuth.currentUser?.photoUrl.toString(),
+            _mAuth.currentUser?.displayName!!,
             _home.value!!,
             title,
             description,
@@ -133,6 +133,7 @@ class SharedViewModel : ViewModel() {
         _home.value =
             Home(arrayListOf(), Address(LatLng(0.0, 0.0), "", "", ""), 0, "", false, false)
         _homePost.value = HomePost(
+            "",
             "",
             "",
             Home(arrayListOf(), Address(LatLng(0.0, 0.0), "", "", ""), 0, "", false, false),

@@ -7,6 +7,7 @@ import kotlinx.android.parcel.Parcelize
 data class HomePost(
     val ownerId: String,
     val ownerPicture: String,
+    val ownerName: String,
     val home: Home,
     var title: String,
     var description: String?,

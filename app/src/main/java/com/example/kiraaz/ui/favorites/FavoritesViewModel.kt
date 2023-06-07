@@ -46,53 +46,56 @@ class FavoritesViewModel : ViewModel(){
     }
 
     private fun getPosts() {
-        database.collection("HomePosts")
-            .whereIn("id", favorites.value!!)
-            .get()
-            .addOnSuccessListener { documents ->
-                val homePosts: ArrayList<HomePost?> = ArrayList()
-                for (document in documents) {
-                    val homeData = document.get("home") as HashMap<String, Any>
-                    val addressData = homeData["address"] as HashMap<String, Any>
-                    val latLngData = addressData["latLng"] as HashMap<String, Any>
-                    val latLng = LatLng(
-                        latLngData["latitude"] as Double,
-                        latLngData["longitude"] as Double
-                    )
-                    val address = Address(
-                        latLng,
-                        addressData["street"] as String,
-                        addressData["city"] as String,
-                        addressData["district"] as String
-                    )
+        if (!_favorites.value.isNullOrEmpty()) {
+            database.collection("HomePosts")
+                .whereIn("id", favorites.value!!)
+                .get()
+                .addOnSuccessListener { documents ->
+                    val homePosts: ArrayList<HomePost?> = ArrayList()
+                    for (document in documents) {
+                        val homeData = document.get("home") as HashMap<String, Any>
+                        val addressData = homeData["address"] as HashMap<String, Any>
+                        val latLngData = addressData["latLng"] as HashMap<String, Any>
+                        val latLng = LatLng(
+                            latLngData["latitude"] as Double,
+                            latLngData["longitude"] as Double
+                        )
+                        val address = Address(
+                            latLng,
+                            addressData["street"] as String,
+                            addressData["city"] as String,
+                            addressData["district"] as String
+                        )
 
-                    val home = Home(
-                        homeData["images"] as ArrayList<String>,
-                        address,
-                        homeData["floor"].toString().toInt(),
-                        homeData["rooms"] as String,
-                        homeData["isAmericanKitchen"].toString().toBoolean(),
-                        homeData["isFurnished"].toString().toBoolean()
-                    )
+                        val home = Home(
+                            homeData["images"] as ArrayList<String>,
+                            address,
+                            homeData["floor"].toString().toInt(),
+                            homeData["rooms"] as String,
+                            homeData["isAmericanKitchen"].toString().toBoolean(),
+                            homeData["isFurnished"].toString().toBoolean()
+                        )
 
-                    val homePost = HomePost(
-                        document.getString("ownerId")!!,
-                        document.getString("ownerPicture")!!,
-                        home,
-                        document.getString("title")!!,
-                        document.getString("description"),
-                        document.getLong("price")!!.toInt(),
-                        document.getLong("deposit")!!.toInt(),
-                        document.getLong("dues")!!.toInt(),
-                        document.getLong("roommate")!!.toInt(),
-                        document.getString("date")!!,
-                        document.getString("id")!!,
-                        document.getBoolean("available")!!
-                    )
-                    homePosts.add(homePost)
+                        val homePost = HomePost(
+                            document.getString("ownerId")!!,
+                            document.getString("ownerPicture")!!,
+                            document.getString("ownerName")!!,
+                            home,
+                            document.getString("title")!!,
+                            document.getString("description"),
+                            document.getLong("price")!!.toInt(),
+                            document.getLong("deposit")!!.toInt(),
+                            document.getLong("dues")!!.toInt(),
+                            document.getLong("roommate")!!.toInt(),
+                            document.getString("date")!!,
+                            document.getString("id")!!,
+                            document.getBoolean("available")!!
+                        )
+                        homePosts.add(homePost)
+                    }
+                    _homePosts.value = homePosts
+                    isEmpty.value = homePosts.isEmpty()
                 }
-                _homePosts.value = homePosts
-                isEmpty.value = homePosts.isEmpty()
-            }
+        }
     }
 }
