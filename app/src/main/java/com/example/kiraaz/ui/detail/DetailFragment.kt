@@ -77,7 +77,7 @@ class DetailFragment : Fragment(), OnMapReadyCallback {
                 }
             }
 
-            if (navArgs.isMyPost){
+            if (navArgs.isMyPost) {
                 favBtn.setImageResource(R.drawable.round_create_16)
             }
 
@@ -86,10 +86,22 @@ class DetailFragment : Fragment(), OnMapReadyCallback {
             }
 
             favBtn.setOnClickListener {
-                if (navArgs.isMyPost){
-                   //TODO: Edit post
-                }else{
+                if (navArgs.isMyPost) {
+                    //TODO: Edit post
+                } else {
                     viewModel.toggleFavorite(post.id)
+                }
+            }
+
+            contactBtn.setOnClickListener {
+                if (!navArgs.isMyPost && post.ownerId != viewModel.uid) {
+                    findNavController().navigate(
+                        DetailFragmentDirections.actionDetailFragmentToChatFragment(
+                            post.ownerId,
+                            post.ownerPicture,
+                            post.ownerName
+                        )
+                    )
                 }
             }
         }
