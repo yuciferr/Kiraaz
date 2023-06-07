@@ -150,5 +150,14 @@
         <argument
             android:name="ownerID"
             app:argType="string" />
+        <argument
+            android:name="ownerPhoto"
+            app:argType="string" />
+        <argument
+            android:name="ownerName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_chatFragment_to_messagesFragment"
+            app:destination="@id/messagesFragment" />
     </fragment>
 </navigation>
