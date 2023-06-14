@@ -14,15 +14,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "270786683486-ffedejctolm2vps0cj4r1n2vlh377tnk.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.kiraaz",
-            "certificate_hash": "dd8e19a12f89f33afda2c6a071e19ffa149f37a0"
-          }
-        },
-        {
-          "client_id": "270786683486-5vlk4b4fuu1o9ntm632pke55cc64aqga.apps.googleusercontent.com",
+          "client_id": "270786683486-31jteah9chih5ht4n2hcdb1kt2okjgt5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -35,7 +27,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "270786683486-5vlk4b4fuu1o9ntm632pke55cc64aqga.apps.googleusercontent.com",
+              "client_id": "270786683486-31jteah9chih5ht4n2hcdb1kt2okjgt5.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
