@@ -115,6 +115,7 @@ class ProfileFragment : Fragment() {
             binding.signoutBtn.setOnClickListener{
                 viewModel.mAuth.signOut()
                 findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
+                findNavController().clearBackStack(R.id.loginFragment)
             }
 
         }

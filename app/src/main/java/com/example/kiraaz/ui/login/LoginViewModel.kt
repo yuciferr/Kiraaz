@@ -17,12 +17,17 @@ class LoginViewModel: ViewModel() {
     val isGoogleSignInSuccessful: MutableLiveData<Boolean>
         get() = _isGoogleSignInSuccessful
 
+    val errorGoogle= MutableLiveData<String>()
+
     fun signInWithGoogle(googleSignInAccount: GoogleSignInAccount) {
         val googleAuthCredential = GoogleAuthProvider.getCredential(googleSignInAccount.idToken, null)
         _mAuth.signInWithCredential(googleAuthCredential)
             .addOnCompleteListener { task ->
                 isNewUser.value = task.result?.additionalUserInfo?.isNewUser ?: false
                 _isGoogleSignInSuccessful.value = task.isSuccessful
+            }.addOnFailureListener {
+                _isGoogleSignInSuccessful.value = false
+                errorGoogle.value = it.localizedMessage
             }
     }
 

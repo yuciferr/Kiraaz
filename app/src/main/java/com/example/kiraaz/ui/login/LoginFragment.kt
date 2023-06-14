@@ -148,7 +148,7 @@ class LoginFragment : Fragment() {
                             }
                         }
                     } else {
-                        Toast.makeText(requireContext(), "Login Failed", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), viewModel.errorGoogle.value, Toast.LENGTH_SHORT).show()
                     }
                 }
             } catch (e: ApiException) {
