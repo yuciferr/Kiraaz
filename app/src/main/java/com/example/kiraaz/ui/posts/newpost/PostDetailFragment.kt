@@ -1,12 +1,12 @@
 package com.example.kiraaz.ui.posts.newpost
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.kiraaz.R
@@ -68,6 +68,10 @@ class PostDetailFragment : Fragment() {
             }
             if (binding.roommateTv.text.isNullOrBlank()){
                 binding.roommate.error = "Roommate cannot be empty"
+                return@setOnClickListener
+            }
+            if(binding.depositTv.text.isNullOrBlank()){
+                binding.deposit.error = "Deposit cannot be empty"
                 return@setOnClickListener
             }
             viewModel.uploadHomePost(
