@@ -132,7 +132,11 @@
         android:id="@+id/matchesFragment"
         android:name="com.example.kiraaz.ui.matches.MatchesFragment"
         android:label="fragment_matches"
-        tools:layout="@layout/fragment_matches" />
+        tools:layout="@layout/fragment_matches" >
+        <action
+            android:id="@+id/action_matchesFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+    </fragment>
     <fragment
         android:id="@+id/messagesFragment"
         android:name="com.example.kiraaz.ui.messages.MessagesFragment"
