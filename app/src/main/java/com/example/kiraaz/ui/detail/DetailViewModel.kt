@@ -21,6 +21,9 @@ class DetailViewModel : ViewModel(){
     val favorites: MutableLiveData<List<String>>
         get() = _favorites
 
+
+    val args : MutableLiveData<DetailFragmentArgs> = MutableLiveData()
+
     private fun addFavorite(postId: String) {
         _favorites.value?.let {
             val favorites = it.toMutableList()

@@ -11,7 +11,6 @@ import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.example.kiraaz.R
 import com.example.kiraaz.databinding.FragmentDetailBinding
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -24,7 +23,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 class DetailFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var binding: FragmentDetailBinding
-    private val navArgs by navArgs<DetailFragmentArgs>()
+    private lateinit var navArgs: DetailFragmentArgs
     private lateinit var viewModel: DetailViewModel
 
     private lateinit var mapView: MapView
@@ -38,12 +37,18 @@ class DetailFragment : Fragment(), OnMapReadyCallback {
         bottomNavigationBar?.visibility = View.GONE
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        navArgs = DetailFragmentArgs.fromBundle(requireArguments())
+        viewModel = ViewModelProvider(this)[DetailViewModel::class.java]
+        viewModel.args.value = navArgs
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDetailBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this)[DetailViewModel::class.java]
         viewModel.getFavorites()
 
 
@@ -52,25 +57,27 @@ class DetailFragment : Fragment(), OnMapReadyCallback {
         mapView.getMapAsync(this)
 
         binding.apply {
-            val post = navArgs.post
-            val images = post.home.images
-            val adapter = DetailViewPagerAdapter(images)
-            viewPager.adapter = adapter
-            titleTv.text = post.title
-            priceTv.text = post.price.toString()
-            val location = post.home.address.district + ", " + post.home.address.city
-            locationTv.text = location
-            descriptionTv.text = post.description
-            profileIv.setImageURI(post.ownerPicture.toUri())
-            roommateTv.text = post.roommate.toString()
-            roomTv.text = post.home.rooms
-            floorTv.text = post.home.floor.toString()
-            depositTv.text = post.deposit.toString()
-            furnishedTv.text = post.home.isFurnished.toString()
-            kitchenTv.text = post.home.isAmericanKitchen.toString()
+            viewModel.args.observe(viewLifecycleOwner) {
+                val post = it.post
+                val images = post?.home?.images!!
+                val adapter = DetailViewPagerAdapter(images)
+                viewPager.adapter = adapter
+                titleTv.text = post.title
+                priceTv.text = post.price.toString()
+                val location = post.home.address.district + ", " + post.home.address.city
+                locationTv.text = location
+                descriptionTv.text = post.description
+                profileIv.setImageURI(post.ownerPicture.toUri())
+                roommateTv.text = post.roommate.toString()
+                roomTv.text = post.home.rooms
+                floorTv.text = post.home.floor.toString()
+                depositTv.text = post.deposit.toString()
+                furnishedTv.text = post.home.isFurnished.toString()
+                kitchenTv.text = post.home.isAmericanKitchen.toString()
+            }
 
             viewModel.favorites.observe(viewLifecycleOwner) {
-                if (it.contains(post.id)) {
+                if (it.contains(viewModel.args.value?.post?.id)) {
                     favBtn.setImageResource(R.drawable.round_favorite_24)
                 } else {
                     favBtn.setImageResource(R.drawable.round_favorite_border_24)
@@ -89,19 +96,20 @@ class DetailFragment : Fragment(), OnMapReadyCallback {
                 if (navArgs.isMyPost) {
                     //TODO: Edit post
                 } else {
-                    viewModel.toggleFavorite(post.id)
+                    viewModel.toggleFavorite(viewModel.args.value?.post?.id!!)
                 }
             }
 
             contactBtn.setOnClickListener {
-                if (!navArgs.isMyPost && post.ownerId != viewModel.uid) {
+                if (!navArgs.isMyPost && viewModel.args.value?.post?.ownerId != viewModel.uid) {
                     findNavController().navigate(
                         DetailFragmentDirections.actionDetailFragmentToChatFragment(
-                            post.ownerId,
-                            post.ownerPicture,
-                            post.ownerName
+                            viewModel.args.value?.post?.ownerId!!,
+                            viewModel.args.value?.post?.ownerPicture!!,
+                            viewModel.args.value?.post?.ownerName!!
                         )
                     )
+
                 }
             }
         }
@@ -133,8 +141,8 @@ class DetailFragment : Fragment(), OnMapReadyCallback {
         map.isMyLocationEnabled = false
         map.clear()
         val currentLatLng = LatLng(
-            navArgs.post.home.address.latLng.latitude,
-            navArgs.post.home.address.latLng.longitude
+            navArgs.post?.home?.address?.latLng?.latitude!!,
+            navArgs.post?.home?.address?.latLng?.longitude!!
         )
         map.addMarker(MarkerOptions().position(currentLatLng))
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
