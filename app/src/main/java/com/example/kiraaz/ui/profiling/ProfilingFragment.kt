@@ -123,7 +123,7 @@ class ProfilingFragment : Fragment() {
                             "Guests" -> binding.guests.isChecked = true
                             "Smoking" -> binding.smoking.isChecked = true
                             "Alcohol" -> binding.alcohol.isChecked = true
-                            "Language" -> binding.language.isChecked = true
+                            "Different Language" -> binding.language.isChecked = true
                         }
                     }
                 }else{
