@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kiraaz.R
 import com.example.kiraaz.databinding.FragmentMatchesBinding
@@ -16,7 +17,7 @@ class MatchesFragment : Fragment() {
 
     private lateinit var binding: FragmentMatchesBinding
     private lateinit var viewModel: MatchesViewModel
-    private lateinit var matches: List<Profile>
+    private lateinit var matches: ArrayList<Profile>
     private lateinit var percents: List<Int>
 
     //Show bottom navigation bar
@@ -38,12 +39,18 @@ class MatchesFragment : Fragment() {
 
         viewModel.matches.observe(viewLifecycleOwner) {
             matches = it
-            binding.matchesRv.adapter = MatchesRecyclerAdapter(matches, percents)
+            val adapter = MatchesRecyclerAdapter(matches, percents)
+            binding.matchesRv.adapter = adapter
             binding.matchesRv.layoutManager = LinearLayoutManager(
                 context,
                 LinearLayoutManager.VERTICAL,
                 false
             )
+
+            val swipe = adapter.SwipeGestures()
+            val itemTouchHelper = ItemTouchHelper(swipe)
+            itemTouchHelper.attachToRecyclerView(binding.matchesRv)
+
             binding.matchesRv.visibility = View.VISIBLE
             binding.imageView4.visibility = View.GONE
         }

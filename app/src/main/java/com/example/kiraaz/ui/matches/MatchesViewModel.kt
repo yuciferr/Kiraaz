@@ -18,12 +18,12 @@ class MatchesViewModel : ViewModel() {
 
     private val database = FirebaseFirestore.getInstance()
 
-    private val _matches: MutableLiveData<List<Profile>> = MutableLiveData()
-    val matches: MutableLiveData<List<Profile>>
+    private val _matches: MutableLiveData<ArrayList<Profile>> = MutableLiveData()
+    val matches: MutableLiveData<ArrayList<Profile>>
         get() = _matches
 
-    private val _percents: MutableLiveData<List<Int>> = MutableLiveData()
-    val percents: MutableLiveData<List<Int>>
+    private val _percents: MutableLiveData<ArrayList<Int>> = MutableLiveData()
+    val percents: MutableLiveData<ArrayList<Int>>
         get() = _percents
 
     private val profile: MutableLiveData<Profile> = MutableLiveData()

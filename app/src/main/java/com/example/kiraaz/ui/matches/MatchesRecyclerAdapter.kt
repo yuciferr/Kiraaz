@@ -2,12 +2,13 @@ package com.example.kiraaz.ui.matches
 
 import android.annotation.SuppressLint
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.kiraaz.databinding.ItemMatchesBinding
 import com.example.kiraaz.model.Profile
 
-class MatchesRecyclerAdapter(private val items: List<Profile?>, private val percents: List<Int?>) :
+class MatchesRecyclerAdapter(private val items: ArrayList<Profile>, private val percents: List<Int?>) :
     RecyclerView.Adapter<MatchesRecyclerAdapter.MatchesViewHolder>() {
 
     class MatchesViewHolder(private val binding: ItemMatchesBinding) :
@@ -52,5 +53,32 @@ class MatchesRecyclerAdapter(private val items: List<Profile?>, private val perc
 
     override fun onBindViewHolder(holder: MatchesViewHolder, position: Int) {
         holder.bind(items[position], percents[position])
+    }
+
+
+    inner class SwipeGestures : ItemTouchHelper.SimpleCallback(
+        0,
+        ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+    ) {
+        override fun onMove(
+            recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder,
+            target: RecyclerView.ViewHolder
+        ): Boolean {
+            return false
+        }
+
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {
+
+            when (swipeDir) {
+                ItemTouchHelper.LEFT -> {
+                    items.removeAt(viewHolder.adapterPosition)
+                    notifyItemRemoved(viewHolder.adapterPosition)
+                }
+                ItemTouchHelper.RIGHT -> {
+
+                }
+
+            }
+        }
     }
 }
