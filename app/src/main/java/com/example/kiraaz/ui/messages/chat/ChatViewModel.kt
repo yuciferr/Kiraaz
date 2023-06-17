@@ -26,9 +26,22 @@ class ChatViewModel : ViewModel() {
 
     fun getMessages(chatId: String) {
         database.collection("Profiles").document(uid).collection("Messages")
-            .document(chatId).addSnapshotListener { snapshot, e ->
-                if (e != null) {
-                    return@addSnapshotListener
+            .document(chatId).get().addOnSuccessListener {
+                if (it.exists()) {
+                    val messages: ArrayList<Message?> = ArrayList()
+
+                    for(message in it.get("messages") as ArrayList<HashMap<String, Any>>) {
+                        messages.add(
+                            Message(
+                                id = message["id"] as String,
+                                senderId = message["senderId"] as String,
+                                message = message["message"] as String,
+                                timestamp = message["timestamp"] as Long
+                            )
+                        )
+                    }
+                    _messages.value = messages.filterNotNull()
+
                 }
             }
     }
@@ -49,6 +62,26 @@ class ChatViewModel : ViewModel() {
                 messages.add(message)
                 database.collection("Profiles").document(uid).collection("Messages")
                     .document(chatId).set(hashMapOf("messages" to messages))
+            }
+        receiverMessage(chatId, message.message)
+    }
+
+    private fun receiverMessage(chatId: String, message: String) {
+        val message = Message(
+            id = UUID.randomUUID().toString(),
+            senderId = uid,
+            message = message,
+            timestamp = System.currentTimeMillis()
+        )
+        val messages = ArrayList<Message>()
+        database.collection("Profiles").document(chatId).collection("Messages").document(uid).get()
+            .addOnSuccessListener {
+                if (it.exists()) {
+                    messages.addAll(it.get("messages") as ArrayList<Message>)
+                }
+                messages.add(message)
+                database.collection("Profiles").document(chatId).collection("Messages")
+                    .document(uid).set(hashMapOf("messages" to messages))
             }
     }
 
