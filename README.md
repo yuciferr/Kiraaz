@@ -3,6 +3,9 @@
 # Figma Link
 https://www.figma.com/file/0DpHgvpkhSdjgaXddksZWg/Kiraaz?type=design&node-id=0%3A1&t=lMvlvkE2qWnQ6tTB-1
 
+# Presentation Link
+https://www.youtube.com/watch?v=vpru555NlE8
+
 ## Login Page
 The login page is the first step for the user to access the application. On this page, users can register or log in if they have an existing account. Users can sign up by entering their email and password or using the option to sign up with their Google account. Also, if users are already logged in, the app will continue bypassing this page directly.
 
