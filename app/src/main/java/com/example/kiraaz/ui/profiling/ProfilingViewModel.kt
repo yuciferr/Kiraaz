@@ -40,7 +40,7 @@ class ProfilingViewModel : ViewModel() {
                 .build()
         )
 
-        _profile.value = Profile(name,gender,birthdate,city,
+        _profile.value = Profile(uid,name,gender,birthdate,city,
             _mAuth.currentUser?.email,_mAuth.currentUser?.photoUrl.toString(),problems)
 
         database.collection("Profiles").document(_uid!!).set(_profile.value!!).addOnSuccessListener {
@@ -116,7 +116,7 @@ class ProfilingViewModel : ViewModel() {
                     val city = data["city"].toString()
                     val problems = data["problems"] as ArrayList<String>?
 
-                    _profile.value = Profile(name,gender, birthDate, city, email, image, problems)
+                    _profile.value = Profile(uid,name,gender, birthDate, city, email, image, problems)
 
                     _isDownloaded.value = true
                 }

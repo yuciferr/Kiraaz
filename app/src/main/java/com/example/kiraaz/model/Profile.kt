@@ -1,6 +1,7 @@
 package com.example.kiraaz.model
 
 data class Profile(
+    val uid: String?,
     var name: String?,
     var gender: String?,
     var birthDate: String?,

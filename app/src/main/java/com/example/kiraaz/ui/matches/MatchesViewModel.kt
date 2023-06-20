@@ -49,7 +49,7 @@ class MatchesViewModel : ViewModel() {
                     val city = data["city"].toString()
                     val problems = data["problems"] as ArrayList<String>?
 
-                    profile.value = Profile(name, gender, birthDate, city, email, image, problems)
+                    profile.value = Profile(uid,name, gender, birthDate, city, email, image, problems)
                 }
             }
 
@@ -62,6 +62,7 @@ class MatchesViewModel : ViewModel() {
             val list2 = ArrayList<Int>()
             for (document in documents) {
                 if (document["email"].toString() != profile.value?.email) {
+                    val id = document.id
                     val name = document["name"].toString()
                     val email = document["email"].toString()
                     val image = document["image"].toString()
@@ -70,7 +71,7 @@ class MatchesViewModel : ViewModel() {
                     val city = document["city"].toString()
                     val problems = document["problems"] as ArrayList<String>?
 
-                    val profile = Profile(name, gender, birthDate, city, email, image, problems)
+                    val profile = Profile(id,name, gender, birthDate, city, email, image, problems)
                     val percent = compareProfiles(profile)
                     if (percent > 49) {
                         list2.add(percent)
@@ -96,7 +97,7 @@ class MatchesViewModel : ViewModel() {
         if (profile.city == this.profile.value?.city) {
             return 20
         }
-        return 0
+        return -20
     }
 
     private fun compareProblems(profile: Profile): Int {

@@ -118,6 +118,10 @@ class ProfileFragment : Fragment() {
                 findNavController().clearBackStack(R.id.loginFragment)
             }
 
+            binding.languageBtn.setOnClickListener{
+                Toast.makeText(context, "Not yet developed", Toast.LENGTH_SHORT).show()
+            }
+
         }
         return binding.root
     }
