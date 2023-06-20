@@ -2,13 +2,17 @@ package com.example.kiraaz.ui.matches
 
 import android.annotation.SuppressLint
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.kiraaz.databinding.ItemMatchesBinding
 import com.example.kiraaz.model.Profile
 
-class MatchesRecyclerAdapter(private val items: ArrayList<Profile>, private val percents: List<Int?>) :
+class MatchesRecyclerAdapter(
+    private val items: ArrayList<Profile>,
+    private val percents: List<Int?>
+) :
     RecyclerView.Adapter<MatchesRecyclerAdapter.MatchesViewHolder>() {
 
     class MatchesViewHolder(private val binding: ItemMatchesBinding) :
@@ -36,6 +40,16 @@ class MatchesRecyclerAdapter(private val items: ArrayList<Profile>, private val 
 
             }
         }
+        fun navigateToChat(item: Profile?) {
+            binding.root.setOnClickListener{
+                val action = MatchesFragmentDirections.actionMatchesFragmentToChatFragment(
+                    item?.uid.toString(),
+                    item?.image.toString(),
+                    item?.name.toString()
+                )
+                binding.root.findNavController().navigate(action)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchesViewHolder {
@@ -53,12 +67,13 @@ class MatchesRecyclerAdapter(private val items: ArrayList<Profile>, private val 
 
     override fun onBindViewHolder(holder: MatchesViewHolder, position: Int) {
         holder.bind(items[position], percents[position])
+        holder.navigateToChat(items[position])
     }
 
 
     inner class SwipeGestures : ItemTouchHelper.SimpleCallback(
         0,
-        ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        ItemTouchHelper.LEFT
     ) {
         override fun onMove(
             recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder,
@@ -73,9 +88,6 @@ class MatchesRecyclerAdapter(private val items: ArrayList<Profile>, private val 
                 ItemTouchHelper.LEFT -> {
                     items.removeAt(viewHolder.adapterPosition)
                     notifyItemRemoved(viewHolder.adapterPosition)
-                }
-                ItemTouchHelper.RIGHT -> {
-
                 }
 
             }
