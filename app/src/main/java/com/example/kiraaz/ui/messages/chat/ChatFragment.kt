@@ -61,13 +61,13 @@ class ChatFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        viewModel.getMessages(navArgs.ownerID)
         viewModel.messages.observe(viewLifecycleOwner) {
             binding.messagesRv.apply {
                 layoutManager = LinearLayoutManager(context)
                 adapter = ChatRecyclerAdapter(it)
                 scrollToPosition(it.size - 1)
             }
+            viewModel.getMessages(navArgs.ownerID)
         }
     }
 }
