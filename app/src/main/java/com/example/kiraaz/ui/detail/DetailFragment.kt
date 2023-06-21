@@ -7,10 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.kiraaz.R
 import com.example.kiraaz.databinding.FragmentDetailBinding
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -67,7 +67,7 @@ class DetailFragment : Fragment(), OnMapReadyCallback {
                 val location = post.home.address.district + ", " + post.home.address.city
                 locationTv.text = location
                 descriptionTv.text = post.description
-                profileIv.setImageURI(post.ownerPicture.toUri())
+                Glide.with(requireContext()).load(post.ownerPicture).into(profileIv)
                 roommateTv.text = post.roommate.toString()
                 roomTv.text = post.home.rooms
                 floorTv.text = post.home.floor.toString()

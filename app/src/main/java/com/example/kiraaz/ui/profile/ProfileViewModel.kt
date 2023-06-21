@@ -39,7 +39,7 @@ class ProfileViewModel : ViewModel() {
 
                 if (data != null) {
                     val name = _mAuth.currentUser?.displayName
-                    val image = _mAuth.currentUser?.photoUrl.toString()
+                    val image = data["image"].toString()
                     val gender = data["gender"].toString()
 
                     _profile.value = Profile(uid,name, gender, null,null,null, image, null)

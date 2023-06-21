@@ -14,6 +14,7 @@ import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.kiraaz.R
 import com.example.kiraaz.databinding.FragmentProfileBinding
 
@@ -71,7 +72,7 @@ class ProfileFragment : Fragment() {
             viewModel.isDownloaded.observe(viewLifecycleOwner){
                 if(it){
                     binding.nameTv.text = viewModel.profile.value?.name
-                    binding.profileIv2.setImageURI(viewModel.profile.value?.image?.toUri())
+                    Glide.with(this).load(viewModel.profile.value?.image?.toUri()).into(binding.profileIv2)
                     binding.genderTv.text = viewModel.profile.value?.gender
                 }else{
                     Toast.makeText(context, viewModel.errorDownload.value, Toast.LENGTH_SHORT).show()

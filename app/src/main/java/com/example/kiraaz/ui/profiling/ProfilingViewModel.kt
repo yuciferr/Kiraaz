@@ -62,15 +62,6 @@ class ProfilingViewModel : ViewModel() {
 
         imageRef.putFile(selectedImage).addOnSuccessListener {
 
-            //set firebase user display photo
-            _mAuth.currentUser?.updateProfile(
-                UserProfileChangeRequest.Builder()
-                    .setPhotoUri(selectedImage)
-                    .build()
-            )
-
-            _profile.value?.image = selectedImage.toString()
-
             imageRef.downloadUrl.addOnSuccessListener {
                 database.collection("Profiles").document(_uid!!).update("image", it.toString())
             }
@@ -110,7 +101,7 @@ class ProfilingViewModel : ViewModel() {
                 if(data != null){
                     val name = _mAuth.currentUser?.displayName
                     val email = _mAuth.currentUser?.email
-                    val image = _mAuth.currentUser?.photoUrl.toString()
+                    val image = data["image"].toString()
                     val gender = data["gender"].toString()
                     val birthDate = data["birthDate"].toString()
                     val city = data["city"].toString()

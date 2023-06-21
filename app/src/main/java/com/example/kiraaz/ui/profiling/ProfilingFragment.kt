@@ -23,6 +23,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.kiraaz.R
 import com.example.kiraaz.databinding.FragmentProfilingBinding
 import com.example.kiraaz.utils.Constants
@@ -112,8 +113,9 @@ class ProfilingFragment : Fragment() {
                         binding.genderFemale.isChecked = true
                     }
 
-                    if (viewModel.profile.value?.image != "") {
-                        binding.profileIv.setImageURI(Uri.parse(viewModel.profile.value?.image))
+                    if (viewModel.profile.value?.image != null) {
+                        Glide.with(requireContext()).load(viewModel.profile.value?.image)
+                            .into(binding.profileIv)
                     }
 
                     viewModel.profile.value?.problems?.forEach { i ->
