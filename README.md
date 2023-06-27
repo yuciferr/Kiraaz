@@ -3,22 +3,29 @@ https://www.figma.com/file/0DpHgvpkhSdjgaXddksZWg/Kiraaz?type=design&node-id=0%3
 
 # Screenshots
 
-|  | Light | Mode | |
+## Light Mode
+|  |  |  | |
 |-------------------|-------------------|-------------------|-------------------|
-| Login | Profile | Profiling | My Post |
+| Login | Profile | Profiling | My Posts |
 |![Screenshot_20230628-002719_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/6ce7f2f6-154e-4f8b-879c-22ea358cda7f)|![Screenshot_20230628-002005_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/c97df14b-4ae3-49cf-9264-483119ee46f5)|![Screenshot_20230628-002024_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/fd87c622-e510-417a-a56a-5f98c0aaaa32)|![Screenshot_20230628-002032_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/066dfd58-20ab-466a-867c-116cc200963e)|
 | Post Image | Post Address | Post Detail | Detail |
 |![Screenshot_20230628-002041_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/59249c68-8e6f-46ce-ba5b-8a010213c185)|![Screenshot_20230628-002151_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/c5d86d11-65d8-49fa-b83a-930d93969cc4)|![Screenshot_20230628-002201_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/b6099919-0782-4788-8df4-dbf1f46b9fee)|![Screenshot_20230628-002602_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/7c673d8d-ea31-413a-8429-5853114f50a1)|
+| Detail | Messages | Chat | Matches |
+|![Screenshot_20230628-002610_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/f73ebefb-0f54-4504-8ec1-eb287364d9dc)|![Screenshot_20230628-002414_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/ae291c86-4e85-4def-80e3-9eeb75156f2d)|![Screenshot_20230628-002653_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/7dc6f1e4-1ee4-4a5e-867e-f0a384bd90d3)|![Screenshot_20230628-002422_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/b8991362-27c9-4a4d-a209-1226e34a1091)|
+| Favorites | Search |  |  |
+|![Screenshot_20230628-002447_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/cbe34df7-c44a-4b31-a887-af7f88d53082)|![Screenshot_20230628-002513_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/28a495fc-9c26-4c02-aafa-2ab03d32f3e0)|||
 
-
-
-
-|  | Night Mode |  |
-|-------------------|-------------------|-------------------|
-| Splash | Home | Detail |
-|![Screenshot_20230416-221449_RickAndMorty](https://user-images.githubusercontent.com/94411717/232344062-c6c56ad8-1b31-41bf-8bca-506b42d01052.jpg)|![Screenshot_20230416-221458_RickAndMorty](https://user-images.githubusercontent.com/94411717/232344070-0dbc7187-c049-48f4-8099-74b0b8f1b958.jpg)|![Screenshot_20230416-221602_RickAndMorty](https://user-images.githubusercontent.com/94411717/232344076-93ac58c4-e6ec-4fa9-84c0-e565e7a66455.jpg)|
-| Location Paging |  |  |
-|![Screenshot_20230416-221619_RickAndMorty](https://user-images.githubusercontent.com/94411717/232344162-ad0c1447-c8e8-46a8-a8d7-007d046c6d78.jpg)|||
+## Night Mode
+|  |  |  | |
+|-------------------|-------------------|-------------------|-------------------|
+| Login | Profile | Profiling | My Posts |
+|![Screenshot_20230628-002728_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/ada622ae-351f-4652-a759-ee85b13ea8ac)|![Screenshot_20230628-003117_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/00a4d9b5-300c-41e3-9d00-7f5ed3f1aaa8)|![Screenshot_20230628-002749_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/30356bee-96e2-4b98-a7ec-1ccc46104473)| ![Screenshot_20230628-003125_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/4e22a76c-83d2-4a0a-9c65-8465a86dc424)|
+| Post Image | Post Address | Post Detail | Detail |
+|![Screenshot_20230628-003600_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/404c57f4-5a64-4697-8df9-2dccd483a9d9)|![Screenshot_20230628-003222_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/b4aa9c05-73fc-43d8-8868-c48a43ccc90d)|![Screenshot_20230628-003230_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/8acb98ea-8a0a-498b-84f9-60e9666c7694)|![Screenshot_20230628-003431_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/6f517594-1a65-4a2c-9bd2-2be11853ca16)|
+| Detail | Messages | Chat | Matches |
+|![Screenshot_20230628-003441_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/9bc2bb28-f007-4100-b239-0eaf54b0b16d)|![Screenshot_20230628-003356_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/f359ffb4-2fbb-49b9-83a6-2ec4cbd61f56)|![Screenshot_20230628-003403_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/f1fd3154-cada-426e-981a-e5af82c099db)|![Screenshot_20230628-003409_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/c6907ddb-31eb-444c-b63e-bb1c3dce27a8)|
+| Favorites | Search |  |  |
+|![Screenshot_20230628-003415_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/ae376dc1-d109-428e-b174-1aa97da616a6)|![Screenshot_20230628-003426_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/28110749-5adf-474a-a4e0-b709e9409014)|||
 
 
 ## Login Page
