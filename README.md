@@ -1,10 +1,25 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-8d59dc4de5201274e310e4c54b9627a8934c3b88527886e3b421487c677d23eb.svg)](https://classroom.github.com/a/bNK1Gd0z)
-
 # Figma Link
 https://www.figma.com/file/0DpHgvpkhSdjgaXddksZWg/Kiraaz?type=design&node-id=0%3A1&t=lMvlvkE2qWnQ6tTB-1
 
-# Presentation Link
-https://www.youtube.com/watch?v=vpru555NlE8
+# Screenshots
+
+|  | Light | Mode | |
+|-------------------|-------------------|-------------------|-------------------|
+| Login | Profile | Profiling | My Post |
+|![Screenshot_20230628-002719_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/6ce7f2f6-154e-4f8b-879c-22ea358cda7f)|![Screenshot_20230628-002005_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/c97df14b-4ae3-49cf-9264-483119ee46f5)|![Screenshot_20230628-002024_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/fd87c622-e510-417a-a56a-5f98c0aaaa32)|![Screenshot_20230628-002032_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/066dfd58-20ab-466a-867c-116cc200963e)|
+| Post Image | Post Address | Post Detail | Detail |
+|![Screenshot_20230628-002041_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/59249c68-8e6f-46ce-ba5b-8a010213c185)|![Screenshot_20230628-002151_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/c5d86d11-65d8-49fa-b83a-930d93969cc4)|![Screenshot_20230628-002201_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/b6099919-0782-4788-8df4-dbf1f46b9fee)|![Screenshot_20230628-002602_Kiraaz](https://github.com/yuciferr/Kiraaz/assets/94411717/7c673d8d-ea31-413a-8429-5853114f50a1)|
+
+
+
+
+|  | Night Mode |  |
+|-------------------|-------------------|-------------------|
+| Splash | Home | Detail |
+|![Screenshot_20230416-221449_RickAndMorty](https://user-images.githubusercontent.com/94411717/232344062-c6c56ad8-1b31-41bf-8bca-506b42d01052.jpg)|![Screenshot_20230416-221458_RickAndMorty](https://user-images.githubusercontent.com/94411717/232344070-0dbc7187-c049-48f4-8099-74b0b8f1b958.jpg)|![Screenshot_20230416-221602_RickAndMorty](https://user-images.githubusercontent.com/94411717/232344076-93ac58c4-e6ec-4fa9-84c0-e565e7a66455.jpg)|
+| Location Paging |  |  |
+|![Screenshot_20230416-221619_RickAndMorty](https://user-images.githubusercontent.com/94411717/232344162-ad0c1447-c8e8-46a8-a8d7-007d046c6d78.jpg)|||
+
 
 ## Login Page
 The login page is the first step for the user to access the application. On this page, users can register or log in if they have an existing account. Users can sign up by entering their email and password or using the option to sign up with their Google account. Also, if users are already logged in, the app will continue bypassing this page directly.
